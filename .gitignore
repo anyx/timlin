@@ -1,0 +1,9 @@
+app/config/parameters.yml
+app/*\.cache
+app/cache/*
+app/logs/*
+web/bundles/*
+web/css/*
+web/js/*
+vendor/*
+/nbproject

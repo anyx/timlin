@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block headers %}
+    <title>{% block title %}{% block subtitle '' %} &mdash; KnpRadBundle{% endblock %}</title>
+    <meta name="description" content="{% block description '' %}">
+
+    {% block stylesheets %}
+        {{parent()}}
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/main.css') }}" />
+    {% endblock %}
+
+{% endblock headers %}
+
+{% block body %}
+    {% block content '' %}
+{% endblock %}

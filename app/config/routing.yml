@@ -1,0 +1,4 @@
+app:
+    resource: "@App/Resources/config/routing.yml"
+    type:     "rad_convention"
+    

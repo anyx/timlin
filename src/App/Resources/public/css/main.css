@@ -1,0 +1,9 @@
+HTML, BODY {
+    position: relative;
+    height: 100%;
+}
+.b-app-container {
+    height: 100%;
+    position: relative;
+    background: #e5e5e5;
+}
