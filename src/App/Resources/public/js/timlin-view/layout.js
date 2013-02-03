@@ -9,9 +9,10 @@ define(['marionette', 'views/timeline', 'text!templates/layout.phtml'], function
             timeline    : '.j-timeline'
         },
         
-        onRender: function() {
-            var view = new TimelineView({model: this.options.timeline});
-            this.timeline.show(view);
+        onShow: function() {
+            this.timeline.show(new TimelineView({
+                model: this.options.timeline
+            }));
         }
    });
 });

@@ -7,3 +7,16 @@ HTML, BODY {
     position: relative;
     background: #e5e5e5;
 }
+
+.b-line {
+    height: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.b-axis {
+    position: relative;
+}
+.b-date-hint {
+    position: absolute;
+    top: 20px;
+}
