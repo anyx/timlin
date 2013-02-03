@@ -9,8 +9,14 @@
     };
     </script>
     <script data-main="{{asset('/bundles/app/js/timlin-view/main.js')}}" src="{{asset('/bundles/app/js/vendors/require.js/require.js')}}"></script>
+    <script src="{{asset('/bundles/app/js/vendors/jquery.tools.min.js')}}"></script>
 {% endblock %}
 
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/ui-skin.css') }}" />
+{% endblock %}
+    
 {% block content %}
     <div class="j-container b-app-container"></div>
 {% endblock %}

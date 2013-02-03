@@ -2,11 +2,13 @@ define(['marionette', 'models/timeline', 'text!templates/timeline.phtml'], funct
     
     return Marionette.ItemView.extend({
         
-        daysInPixel: 10,
+        scaleCode: 'days',
+        
+        periodInPixel: 1,
         
         defaultCenter: new moment(),
         
-        center: new moment(),
+        centerDate: new moment(),
         
         centerPosition: 0,
         
@@ -22,10 +24,12 @@ define(['marionette', 'models/timeline', 'text!templates/timeline.phtml'], funct
             this.centerPosition = Math.round(width / 2);
             
             this.renderDateOnAxis(this.defaultCenter);
+            this.renderDateOnAxis(this.getLeftDate());
+            this.renderDateOnAxis(this.getRightDate());
         },
         
         renderDateOnAxis: function(date) {
-            var dateHint = $('<span class="b-date-hint">'+ date.format('DD.MM.YYYY') +'</span>');
+            var dateHint = $('<span class="b-date-hint"><span class="b-date-hint-value">'+ date.format('DD.MM.YYYY') +'</span></span>');
             dateHint.css({
                 left: this.calcDatePosition(date) + 'px'
             });
@@ -34,11 +38,20 @@ define(['marionette', 'models/timeline', 'text!templates/timeline.phtml'], funct
         },
         
         calcDatePosition: function(date) {
-            console.log(date)
-            return this.centerPosition + Math.round(date.diff(this.center, 'days') / this.daysInPixel);
+            return this.centerPosition + Math.round(date.diff(this.centerDate, this.scaleCode) / this.periodInPixel);
         },
         
+        getLeftDate: function() {
+            return this.centerDate.clone().add(this.scaleCode, -this.centerPosition * this.periodInPixel);
+        },
+
+        getRightDate: function() {
+            return this.centerDate.clone().add(this.scaleCode, this.centerPosition * this.periodInPixel);
+        },
+
         onShow: function() {
+            this.$el.find('.j-scale-slider').rangeinput({ progress: true, max: 100 });
+            
             this.renderDates();
         }
     });
