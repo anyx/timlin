@@ -9,7 +9,6 @@ define(['app', './point.model'], function(App, PointModel) {
         },
         
         render: function() {
-            console.log('show');
         }
     });
     

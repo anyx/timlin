@@ -1,4 +1,6 @@
-define(['marionette', 'views/timeline', 'text!templates/layout.phtml'], function(Marionette, TimelineView, template) {
+define(
+    ['marionette', 'models/dateScale', 'views/timeline', 'views/scaleSlider', 'text!templates/layout.phtml'],
+    function(Marionette, DateScale, TimelineView, scaleSliderView, template) {
     return Marionette.Layout.extend({
 
         template: function() {
@@ -6,13 +8,23 @@ define(['marionette', 'views/timeline', 'text!templates/layout.phtml'], function
         },
         
         regions: {
-            timeline    : '.j-timeline'
+            timeline    : '.j-timeline',
+            scaleSlider : '.j-scale-slider'
         },
         
         onShow: function() {
-            this.timeline.show(new TimelineView({
-                model: this.options.timeline
-            }));
+            var dateScale = new DateScale();
+            
+            var timelineView = new TimelineView({
+                model       : this.options.timeline,
+                dateScale   : dateScale
+            });
+            this.timeline.show(timelineView);
+            
+            var sliderView = new scaleSliderView({
+                model: dateScale
+            });
+            this.scaleSlider.show(sliderView);
         }
    });
 });

@@ -1,5 +1,5 @@
 define(
-    ['anyx/view', 'text!templates/app.phtml'],
+    ['anyx/view', 'tpl!templates/app.phtml'],
     function(AnyxView, template){
         return AnyxView.extend({
             template: template

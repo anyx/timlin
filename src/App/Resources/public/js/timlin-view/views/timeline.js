@@ -1,35 +1,82 @@
-define(['marionette', 'models/timeline', 'text!templates/timeline.phtml'], function(Marionette, Timeline, template) {
+define(['marionette', 'models/timeline', 'models/gradationChooser', 'tpl!templates/timeline.phtml'], function(Marionette, Timeline, GradationChooser, template) {
     
     return Marionette.ItemView.extend({
+
+        events          : {
+            mousedown   : 'onMouseDown',
+            mousemove   : 'onMouseMove',
+            mouseup     : 'onMouseUp'
+        },
+
+        mouseDown       : false,
+
+        periodInPixel   : 1,
         
-        scaleCode: 'days',
+        segmentWidth    : 100,
         
-        periodInPixel: 1,
+        gradationChooser: new GradationChooser(),
         
-        defaultCenter: new moment(),
+        defaultCenter   : new moment(),
         
-        centerDate: new moment(),
+        centerDate      : new moment(),
         
-        centerPosition: 0,
+        centerPosition  : 0,
         
-        template: function() {
-            return _.template(template, this.model);
+        scale           : null, 
+        
+        template        : template,
+        
+        /**
+         *
+         */
+        initialize : function(options) {
+            this.setScale(options.dateScale.getScale());
+            this.listenTo(options.dateScale, "change", this.onChangeScale);
         },
         
+        /**
+         * 
+         */
         renderDates: function() {
+            this.centerPosition = Math.round(this.$el.width() / 2);
+            
+            var gradation = this.gradationChooser.findGradation(this.scale);
+            
+            this.periodInPixel = this.scale.value / this.segmentWidth;
+            
+            this.$el.find('.j-axis').empty();
+
             var lineElement = this.$el.find('.j-line');
-            
+
             var width = lineElement.width();
-            
+
             this.centerPosition = Math.round(width / 2);
+
+            var minDate = this.getMinDate();
+            var maxDate = this.getMaxDate();
+
+            var nextPoint = this.centerDate.clone();
+            nextPoint.add(gradation.code, gradation.value);
+            while (nextPoint.unix() < maxDate.unix()) {
+                this.renderDateOnAxis(nextPoint);
+                nextPoint.add(gradation.code, gradation.value);
+            }
+            
+            var prevPoint = this.centerDate.clone();
+            prevPoint.subtract(gradation.code, gradation.value);
+            while (prevPoint.unix() > minDate.unix()) {
+                this.renderDateOnAxis(prevPoint);
+                prevPoint.subtract(gradation.code, gradation.value);
+            }
             
             this.renderDateOnAxis(this.defaultCenter);
-            this.renderDateOnAxis(this.getLeftDate());
-            this.renderDateOnAxis(this.getRightDate());
         },
         
+        /**
+         * 
+         */
         renderDateOnAxis: function(date) {
-            var dateHint = $('<span class="b-date-hint"><span class="b-date-hint-value">'+ date.format('DD.MM.YYYY') +'</span></span>');
+            var dateHint = $('<span class="b-date-hint"><span class="b-date-hint-value">'+ date.format('YYYY-MM-DDTHH:mm:ss Z') +'</span></span>');
             dateHint.css({
                 left: this.calcDatePosition(date) + 'px'
             });
@@ -37,21 +84,51 @@ define(['marionette', 'models/timeline', 'text!templates/timeline.phtml'], funct
             dateHint.appendTo(this.$el.find('.j-axis'));
         },
         
+        /**
+         * 
+         */
         calcDatePosition: function(date) {
-            return this.centerPosition + Math.round(date.diff(this.centerDate, this.scaleCode) / this.periodInPixel);
+            return this.centerPosition + Math.round(date.diff(this.centerDate, this.scale.code) / this.periodInPixel);
         },
         
-        getLeftDate: function() {
-            return this.centerDate.clone().add(this.scaleCode, -this.centerPosition * this.periodInPixel);
+        getMinDate: function() {
+            return this.centerDate.clone().subtract(this.scale.code, (this.$el.width() / 2) * this.periodInPixel);
         },
 
-        getRightDate: function() {
-            return this.centerDate.clone().add(this.scaleCode, this.centerPosition * this.periodInPixel);
+        getMaxDate: function() {
+            return this.centerDate.clone().add(this.scale.code, (this.$el.width() / 2) * this.periodInPixel);
         },
 
+        setScale: function(scale) {
+            this.scale = scale;
+        },
+
+        /**
+         * Events
+         */
+        
+        onMouseDown: function() {
+            console.log('down');
+            this.mouseDown = true;
+        },
+        
+        onMouseUp: function() {
+            console.log('up');
+            this.mouseDown = false;
+        },
+        
+        onMouseMove: function() {
+            if (this.mouseDown) {
+                console.log('move');
+            }
+        },
+        
         onShow: function() {
-            this.$el.find('.j-scale-slider').rangeinput({ progress: true, max: 100 });
-            
+            this.renderDates();
+        },
+        
+        onChangeScale: function(scale) {
+            this.setScale(scale);
             this.renderDates();
         }
     });

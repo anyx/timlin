@@ -9,12 +9,11 @@
     };
     </script>
     <script data-main="{{asset('/bundles/app/js/timlin-view/main.js')}}" src="{{asset('/bundles/app/js/vendors/require.js/require.js')}}"></script>
-    <script src="{{asset('/bundles/app/js/vendors/jquery.tools.min.js')}}"></script>
 {% endblock %}
 
 {% block stylesheets %}
     {{parent()}}
-    <link rel="stylesheet" href="{{ asset('bundles/app/css/ui-skin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/js/vendors/jquery-ui/css/pepper-grinder/jquery-ui-1.10.1.custom.min.css') }}" />
 {% endblock %}
     
 {% block content %}
