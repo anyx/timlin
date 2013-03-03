@@ -1,4 +1,4 @@
-define(['marionette', 'tpl!templates/scaleSlider.phtml'], function(Marionette, template) {
+define(['marionette', 'tpl!templates/ScaleSlider.phtml'], function(Marionette, template) {
     
      return Marionette.ItemView.extend({
         
@@ -22,13 +22,14 @@ define(['marionette', 'tpl!templates/scaleSlider.phtml'], function(Marionette, t
         onShow: function() {
             var slider = this;
             
-            var scaleValue = this.model.getScale();
-
             this.$el.find('.j-slider').slider({
                 max         : 99,
                 min         : 0,
-                value       : scaleValue.value,
+                value       : this.model.getValue(),
                 orientation : 'vertical',
+                start       : function(event) {
+                    event.stopPropagation();
+                },
                 slide       : function(event, ui) {
                     slider.model.setValue(100 - ui.value);
                 }

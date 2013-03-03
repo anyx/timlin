@@ -1,4 +1,4 @@
-define(['marionette', 'layout', 'models/timeline' ], function(Marionette, Layout, TimelineModel) {
+define(['marionette', 'layout', 'models/Timeline' ], function(Marionette, Layout, TimelineModel) {
     
     var app = new Marionette.Application();
     

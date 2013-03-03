@@ -17,50 +17,57 @@ define(['backbone'], function(Backbone) {
             'milliseconds',
             'seconds',
             'minutes',
+            'hours',
             'days',
             'weeks',
-            'hours',
             'months',
             'years'
         ],
 
-        scaleCode       : 'seconds',
+        scaleCode       : 'days',
         
         value           : 50,
+        
+        segmentWidth    : 100,
         
         getAvailableScales: function() {
             return _.union(this.defaultScaleCodes, _.keys(this.scaleSizes));
         },
         
-        /**
-         * 
-         */
-        getScale: function() {
-            
-            var originalScale = this.scaleCode;
-            var scaleCode = this.scaleCode;
-            var value = this.value;
-            
-            if (_.indexOf(this.defaultScaleCodes, scaleCode) == -1) {
-                value = value * this.scaleSizes[scaleCode]['scale'];
-                scaleCode = this.scaleSizes[scaleCode]['code'];
-            }
-            
-            return {
-                code                : scaleCode,
-                value               : value,
-                originalScaleCode   : originalScale
-            }
-        },
-        
         setValue: function(value) {
             this.value = value;
-            this.trigger('change', this.getScale());
+            this.trigger('change', this);
+        },
+        
+        getValue: function() {
+            return this.value;
+        },
+        
+        getSegmentWidth: function() {
+            return this.segmentWidth;
         },
         
         setScaleCode: function(scaleCode) {
             this.scaleCode = scaleCode;
-            this.trigger('change', this.getScale());
+            this.trigger('change', this);
+        },
+        
+        getScaleCode: function() {
+            return this.scaleCode;
+        },
+        
+        getPrevScaleCode: function(scaleCode) {
+            var codes = this.getAvailableScales();
+            var scaleIndex = _.indexOf(codes, scaleCode);
+            if (scaleIndex == -1) {
+                throw new Error('Scale "' + scaleCode + '" is not registered');
+            }
+            
+            if (scaleIndex > 0) {
+                scaleIndex--;
+            }
+            
+            return codes[scaleIndex];
         }
     });
 })

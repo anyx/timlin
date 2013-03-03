@@ -1,4 +1,4 @@
-define(['app', './point.model'], function(App, PointModel) {
+define(['app', './Point'], function(App, PointModel) {
     
     var Collection = Backbone.Collection.extend({
         

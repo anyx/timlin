@@ -1,0 +1,14 @@
+{% extends 'App::layout.html.twig' %}
+
+{% block javascripts %}
+{{parent()}}
+    <script data-main="{{asset('/bundles/app/js/timlin-view/specRunner.js')}}" src="{{asset('/bundles/app/js/vendors/require.js/require.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/js/vendors/jasmine/jasmine.css') }}" />
+{% endblock %}
+
+{% block content %}
+    <div class="j-container b-app-container"></div>
+{% endblock %}

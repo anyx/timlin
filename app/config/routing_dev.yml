@@ -14,5 +14,9 @@ _knp_rad_assistant:
     resource: "@KnpRadBundle/Resources/config/routing/assistant.xml"
     prefix:   /_assistant
 
+_test:
+    pattern: _test
+    defaults: { _controller:App:Test:index }
+
 _main:
     resource: routing.yml
