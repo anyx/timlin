@@ -46,7 +46,7 @@ require.config({
     packages: ['timlin']
 });
 
-require(['underscore', 'jasmine-html'], function(_, jasmine){
+require(['jasmine-html'], function(jasmine){
 
     var jasmineEnv = jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;

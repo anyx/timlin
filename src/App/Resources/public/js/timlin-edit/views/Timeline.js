@@ -1,7 +1,11 @@
-define(['marionette', 'models/Timeline', 'models/GradationChooser', 'tpl!templates/Timeline.phtml'], function(Marionette, Timeline, GradationChooser, template) {
+define(['marionette', 'models/GradationChooser', 'models/Timeline', 'tpl!templates/Timeline.phtml'], function(Marionette, GradationChooser, Timeline, template) {
     
     return Marionette.ItemView.extend({
 
+        template        : template,
+        
+        model           : new Timeline,
+        
         durationInPixel : 1,
 
         gradationChooser: new GradationChooser(),
@@ -9,8 +13,6 @@ define(['marionette', 'models/Timeline', 'models/GradationChooser', 'tpl!templat
         startDate       : new moment(),
 
         scale           : null, 
-
-        template        : template,
 
         /**
          *
@@ -20,7 +22,6 @@ define(['marionette', 'models/Timeline', 'models/GradationChooser', 'tpl!templat
             this.listenTo(options.dateScale, 'change', this.onChangeScale);
             this.listenTo(options.layout, 'swipe', this.onSwipe)
         },
-        
         
         getGradationChooser: function() {
             return this.gradationChooser;
@@ -84,8 +85,16 @@ define(['marionette', 'models/Timeline', 'models/GradationChooser', 'tpl!templat
             return this.startDate.clone().add(this.scale.getScaleCode(), this.$el.width() * this.durationInPixel);
         },
 
+        getCenterDate: function() {
+            return this.startDate.clone().add(this.scale.getScaleCode(), (this.$el.width() / 2) * this.durationInPixel);
+        },
+
         setScale: function(scale) {
             this.scale = scale;
+        },
+
+        addPoint: function(point) {
+            this.model.addPoint(point);
         },
 
         /**

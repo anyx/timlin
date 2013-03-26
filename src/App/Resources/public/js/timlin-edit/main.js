@@ -37,6 +37,5 @@ require.config({
 });
 
 require(['app'], function(app) {
-    //var app = new App(appConfig);
     return app.start(appConfig);
 })
