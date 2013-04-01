@@ -9,7 +9,7 @@ define(['marionette', './Dispatcher'], function(Marionette, Dispatcher) {
         },
         
         addController: function(module, controller) {
-            this.dispatcher.addController(module, controller);
+            this.getDispatcher().addController(module, controller);
         },
         
         /**

@@ -960,10 +960,8 @@
     //     });
     //
     route: function(route, name, callback) {
-          console.log('R', route, name, callback);
       if (!_.isRegExp(route)) route = this._routeToRegExp(route);
       if (!callback) callback = this[name];
-      
       Backbone.history.route(route, _.bind(function(fragment) {
         var args = this._extractParameters(route, fragment);
         callback && callback.apply(this, args);
