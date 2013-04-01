@@ -1,0 +1,21 @@
+{% extends 'App::layout.html.twig' %}
+
+{% block javascripts %}
+{{parent()}}
+<script type="text/javascript">
+    var appConfig = {
+        'container'         : '.j-container',
+        'timelineUrl'       : '{{path('app_timeline_index')}}',
+    };
+    </script>
+    <script data-main="{{asset('/bundles/app/js/timlin/main.js')}}" src="{{asset('/bundles/app/js/vendors/require.js/require.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('bundles/app/js/vendors/jquery-ui/css/pepper-grinder/jquery-ui-1.10.1.custom.min.css') }}" />
+{% endblock %}
+    
+{% block content %}
+    <div class="j-container b-app-container"></div>
+{% endblock %}
