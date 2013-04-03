@@ -1,13 +1,16 @@
-define(['marionette'], function(Marionette) {
+define(['application/Controller'], function(Controller) {
 
-    return Marionette.Controller.extend({
+    return Controller.extend({
         
         routes : {
-            'action/:id' : 'doSomething'
+            'timed-editor'  : {
+                'pattern'   : 'editor/:id',
+                'action'    : 'editorAction'
+            }
         },
         
-        doSomething : function(id) {
-            console.log('I do something', id, this);
+        editorAction : function(id) {
+            this.setLayout(new this.options.Layout);
         }
     });
 });

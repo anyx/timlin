@@ -1,31 +1,36 @@
-define(['marionette', './Dispatcher'], function(Marionette, Dispatcher) {
+define(['marionette', './Router'], function(Marionette, Router) {
 
     return Marionette.Application.extend({
 
-        dispatcher: new Dispatcher,
+        router: new Router,
 
         getDispatcher: function() {
             return this.dispatcher;
         },
         
+        getRouter: function() {
+            return this.router;
+        },
+        
         addController: function(module, controller) {
-            this.getDispatcher().addController(module, controller);
+            controller.setApplication(this);
+            this.getRouter().addController(module, controller);
         },
         
         /**
          * 
          */
         onStart     : function() {
-            var Router = Marionette.AppRouter.extend({
-                appRoutes   : this.getDispatcher().getRoutes(),
-                controller  : this.getDispatcher()
-            });
             
-            this.router = new Router();
-
+            this.getRouter().buildRoutes();
+            
             if (Backbone.history) {
                 Backbone.history.start();
             }
+        },
+        
+        generate    : function(route, params) {
+            console.log(this.router);
         }
     });
 })

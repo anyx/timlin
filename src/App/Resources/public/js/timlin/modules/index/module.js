@@ -1,14 +1,13 @@
 define(['app', './Controller', './Layout'], function(app, Controller, Layout) {
 
     app.addController(
-        'editor',
+        'index',
         new Controller({
             Layout  : Layout
         })
     );
     
-    var editor = app.module('editor', function() {
-    });
+    var index = app.module('index', function() {});
     
-    return editor;
+    return index;
 });

@@ -1,4 +1,4 @@
-define(['marionette', 'models/GradationChooser', 'models/Timeline', 'tpl!templates/Timeline.phtml'], function(Marionette, GradationChooser, Timeline, template) {
+define(['marionette', '../models/GradationChooser', '../models/Timeline', 'tpl!../templates/Timeline.phtml'], function(Marionette, GradationChooser, Timeline, template) {
     
     return Marionette.ItemView.extend({
 

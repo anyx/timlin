@@ -2,8 +2,15 @@ define(['backbone', 'marionette', 'application/Application'], function(Backbone,
 
     var app = new Application();
 
+    app.on('start', function(options) {
+        app.addRegions({
+            layout: options.container
+        });
+    });
+
     app.on("initialize:after", function(options){
     });
+
 
     return app;
 });

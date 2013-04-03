@@ -1,12 +1,12 @@
 define(
     [
         'marionette',
-        'models/DateScale',
-        'views/Timeline',
-        'views/ScaleSlider',
-        'views/TopBar',
-        'views/WidgetPanel',
-        'tpl!templates/Layout.phtml'
+        './models/DateScale',
+        './views/Timeline',
+        './views/ScaleSlider',
+        './views/TopBar',
+        './views/WidgetPanel',
+        'tpl!./templates/Layout.phtml'
     ],
     function(
         Marionette,

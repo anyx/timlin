@@ -1,4 +1,4 @@
-define(['marionette', 'tpl!templates/ScaleSlider.phtml'], function(Marionette, template) {
+define(['marionette', 'tpl!../templates/ScaleSlider.phtml'], function(Marionette, template) {
     
      return Marionette.ItemView.extend({
         

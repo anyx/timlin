@@ -4,7 +4,7 @@ describe('Timeline scale & position', function() {
         var that = this;
         var loaded = false;
         
-        require(['models/DateScale', 'models/GradationChooser'], function(DateScale, GradationChooser) {
+        require(['./models/DateScale', './models/GradationChooser'], function(DateScale, GradationChooser) {
             that.dateScale = new DateScale;
             that.gradationChooser = new GradationChooser;
             

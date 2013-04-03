@@ -9,14 +9,6 @@ define(['marionette', 'Layout', 'models/Timeline'], function(Marionette, Layout,
     });
     
        var timeline = new TimelineModel();
-    app.addInitializer(function(options){
-                    {
-                        id: options.timelineId
-                    },
-                    {
-                        urlRoot: options.timelineUrl
-                    }
-    });
        
        var fetchDeffered = timeline.fetch();
        
@@ -33,7 +25,7 @@ define(['marionette', 'Layout', 'models/Timeline'], function(Marionette, Layout,
     });
 
     app.on('start', function(options) {
-        app.addRegions({
+        this.addRegions({
             layout: options.container
         });
     });
