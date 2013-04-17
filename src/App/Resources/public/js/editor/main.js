@@ -5,7 +5,7 @@ require.config({
         'backbone'      : '/bundles/app/js/vendors/backbone',
         'marionette'    : '/bundles/app/js/vendors/backbone.marionette/lib/backbone.marionette',
         'moment'        : '/bundles/app/js/vendors/moment',
-        'anyx'          : '/bundles/app/js/vendors/anyx',
+        'marion'        : '/bundles/app/js/vendors/marion',
         'text'          : '/bundles/app/js/vendors/require.js/text',
         'tpl'           : '/bundles/app/js/vendors/require.js/tpl'
     },
@@ -36,6 +36,6 @@ require.config({
     packages: ['timlin']
 });
 
-require(['app-loader'], function(app) {
-    return app.start(appConfig);
+require(['app', 'modules'], function(app, modules) {
+    return app.start();
 })

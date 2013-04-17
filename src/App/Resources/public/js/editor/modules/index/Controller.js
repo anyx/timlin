@@ -1,4 +1,4 @@
-define(['application/Controller'], function(Controller) {
+define(['marion/Controller'], function(Controller) {
 
     return Controller.extend({
         

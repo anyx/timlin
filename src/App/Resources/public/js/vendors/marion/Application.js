@@ -4,10 +4,6 @@ define(['marionette', './Router'], function(Marionette, Router) {
 
         router: new Router,
 
-        getDispatcher: function() {
-            return this.dispatcher;
-        },
-        
         getRouter: function() {
             return this.router;
         },
@@ -21,16 +17,23 @@ define(['marionette', './Router'], function(Marionette, Router) {
          * 
          */
         onStart     : function() {
+            this.startRouter();
+        },
+        
+        startRouter : function() {
+            _.each(this.submodules, function(submodule) {
+                if ('controllers' in submodule) {
+                    _.each(submodule.controllers, function(controller) {
+                        this.addController(submodule.moduleName, controller);
+                    }, this);
+                }
+            }, this);
             
             this.getRouter().buildRoutes();
             
             if (Backbone.history) {
                 Backbone.history.start();
             }
-        },
-        
-        generate    : function(route, params) {
-            console.log(this.router);
         }
     });
 })

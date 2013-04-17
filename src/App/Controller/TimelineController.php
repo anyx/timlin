@@ -3,13 +3,19 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * 
  */
-class RestController extends Controller
+class TimelineController extends Controller
 {
-    public function showAction()
+    /**
+     * 
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showAction($id)
     {
         return new Response(json_encode(
                 [
@@ -28,5 +34,10 @@ class RestController extends Controller
                     ]
                 ]
         ));
+    }
+    
+    public function listAction()
+    {
+        
     }
 }

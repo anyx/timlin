@@ -1,5 +1,11 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'module'], function(Backbone, module) {
     return Backbone.Model.extend({
+
+        _url: module.config().url,
+        
+        url : function() {
+            return this._url + this.id;
+        },
         
         initialize  : function(options) {
         },

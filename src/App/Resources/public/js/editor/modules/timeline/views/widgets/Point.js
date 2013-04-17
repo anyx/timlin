@@ -19,7 +19,7 @@ define(['./Widget', '../../models/Point'], function(Widget, Point) {
             var point = new Point({
                 date : timelineView.getCenterDate()
             });
-            
+
             timelineView.addPoint(point);
         }
     });

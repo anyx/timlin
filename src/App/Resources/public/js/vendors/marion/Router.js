@@ -31,8 +31,8 @@ define(['marionette'], function(Marionette) {
         /**
          *
          */
-        generate: function(name, parameters, withDiez) {
-            var withDiez = withDiez || true;
+        generate: function(name, parameters, withSplitter) {
+            var withSplitter = withSplitter || true;
             
             if (!(name in this.namedRoutes)) {
                 throw new Error('Route \''+ name + '\' not found');
@@ -43,7 +43,7 @@ define(['marionette'], function(Marionette) {
                 result = result.split(':'+param).join(value);
             });
             
-            if (withDiez) {
+            if (withSplitter) {
                 result = this.splitter + result;
             }
             

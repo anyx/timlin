@@ -64,7 +64,7 @@ define(
         },
         
         getApp  : function() {
-            return this.options.app;
+            return require('app');
         },
         
         /**

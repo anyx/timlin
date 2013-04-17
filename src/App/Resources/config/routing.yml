@@ -1,17 +1,9 @@
 # https://github.com/KnpLabs/geekweek12/wiki/Routing
 
-#homepage:
-#    pattern: /
-#    defaults: { _controller: FrameworkBundle:Template:template, template: 'App::homepage.html.twig' }
-
 app:
     pattern: /
     defaults: { _controller: App:Index:index }
   
-client:
-    pattern: /{id}/edit
-    defaults: { _controller: App:Index:edit }
-
 App:Timeline:
-    collections: [index]
-    resources: [show, update, delete]
+    collections: [index, personal]
+    resources: [show, update, delete, edit]

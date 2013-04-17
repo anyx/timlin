@@ -4,8 +4,6 @@ define(['marionette', '../models/GradationChooser', '../models/Timeline', 'tpl!.
 
         template        : template,
         
-        model           : new Timeline,
-        
         durationInPixel : 1,
 
         gradationChooser: new GradationChooser(),
