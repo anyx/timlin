@@ -3,7 +3,3 @@
 app:
     pattern: /
     defaults: { _controller: App:Index:index }
-  
-App:Timeline:
-    collections: [index, personal]
-    resources: [show, update, delete, edit]

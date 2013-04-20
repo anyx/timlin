@@ -8,11 +8,4 @@ class IndexController
     {
         return [];
     }
-
-    public function editAction($id)
-    {
-        return [
-            'id'    => $id
-        ];
-    }
 }

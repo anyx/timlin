@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Knp\RadBundle\KnpRadBundle(),
             new App\App(),
+            new Rest\Rest()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

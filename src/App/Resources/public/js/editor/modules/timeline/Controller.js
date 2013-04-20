@@ -16,7 +16,7 @@ define(['marion/Controller', './models/Timeline'], function(Controller, Timeline
             var _this = this;
             
             timeline.fetch()
-                .success(function(){
+                .success(function() {
                     _this.setLayout(new _this.options.Layout);
                 })
                 .error(function(){

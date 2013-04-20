@@ -1,15 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace Rest\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Controller\Controller as AppController;
 
 /**
  * 
  */
-class TimelineController extends Controller
+class TimelineController extends AppController
 {
+    /**
+     * 
+     * @return array
+     */
+    public function indexAction()
+    {
+        return new Response(json_encode([]));
+    }
+
     /**
      * 
      * @param int $id

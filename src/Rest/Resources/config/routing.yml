@@ -1,0 +1,6 @@
+Rest:Timeline:
+    collections: [index, personal]
+    resources: [show, update, delete, edit]
+    
+Rest:Article:
+    resources: [show, update, delete, edit]

@@ -1,4 +1,8 @@
 app:
     resource: "@App/Resources/config/routing.yml"
     type:     "rad_convention"
-    
+
+rest:
+    resource: "@Rest/Resources/config/routing.yml"
+    type:     "rad_convention"
+    prefix:   rest
