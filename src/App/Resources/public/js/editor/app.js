@@ -1,4 +1,4 @@
-define(['marion/Application', 'module'], function(Application, module) {
+define(['./Application', 'module'], function(Application, module) {
 
     var app = new Application({options : module.config()});
 
@@ -6,9 +6,6 @@ define(['marion/Application', 'module'], function(Application, module) {
         app.addRegions({
             layout: this.options.container
         });
-    });
-
-    app.on("initialize:after", function(options){
     });
 
     return app;

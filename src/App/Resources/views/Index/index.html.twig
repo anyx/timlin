@@ -11,7 +11,7 @@
             'modules/timeline/models/Timeline' : {
                 url : '{{path('rest_timeline_index')}}'
             },
-            'modules/article/module' : {
+            'modules/article/models/ArticleCollection' : {
                 url : '{{path('rest_article_index')}}'
             }
         }
@@ -27,4 +27,11 @@
     
 {% block content %}
     <div class="j-container b-app-container"></div>
+    
+    <div id="j-loader" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+        <div class="">
+            <i class="icon-spinner icon-spin icon-2x pull-left"></i>
+            <span class="j-text"></span>
+        </div>
+    </div>
 {% endblock %}

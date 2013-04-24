@@ -1,4 +1,4 @@
-define(['marionette', './Router'], function(Marionette, Router) {
+define(['marionette', './Router', './EntityManager'], function(Marionette, Router) {
 
     return Marionette.Application.extend({
 

@@ -1,11 +1,13 @@
 define(
     [
         'marionette',
-        'tpl!./templates/Layout.phtml'
+        'tpl!./templates/Layout.phtml',
+        'app'
     ],
     function(
         Marionette,
-        template
+        template,
+        application
     ) {
 
     return Marionette.Layout.extend({
@@ -14,6 +16,10 @@ define(
 
         className       : 'b-index-layout',
 
+        events          : {
+            'click .j-create-article': 'onClickCreateArticle'
+        },
+
         serializeData   : function() {
             return {
                 application : this.options.application
@@ -21,6 +27,24 @@ define(
         },
         
         regions: {
+        },
+        
+        onShow: function() {
+        },
+        
+        onClickCreateArticle: function() {
+            var createDeffered = new $.Deferred();
+            
+            var entity = application.getEntityManager().createEntity(
+                'Article',
+                {
+                    title: 'Новый материал'
+                },
+                createDeffered
+            );
+            
+            application.loader('Создание статьи...', createDeffered);
+            return false;
         }
    });
 });

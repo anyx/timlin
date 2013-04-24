@@ -1,4 +1,4 @@
-define(['app', './Controller', './Layout'], function(app, Controller, Layout) {
+define(['app', 'module', './Controller', './Layout'], function(app, module, Controller, Layout) {
 
     app.addController(
         'index',
@@ -7,7 +7,9 @@ define(['app', './Controller', './Layout'], function(app, Controller, Layout) {
         })
     );
     
-    var index = app.module('index', function() {});
+    var index = app.module('index', function() {
+        
+    });
     
     return index;
 });

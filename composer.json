@@ -10,25 +10,37 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.1.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.0.*",
-        "doctrine/doctrine-fixtures-bundle": "*",
-        "twig/extensions": "1.0.*",
+        "php":                      ">=5.3.3",
+        "symfony/symfony": "2.2.*",
         "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.1.*",
-        "symfony/monolog-bundle": "2.1.*",
-        "sensio/distribution-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.2.*",
+        "symfony/monolog-bundle": "2.2.*",
+        "doctrine/mongodb-odm": "1.0.*@dev",
+        "doctrine/mongodb-odm-bundle": "3.0.*@dev",
+        "twig/extensions": "1.0.*",
+        "sensio/distribution-bundle": "2.2.*",
+        "sensio/framework-extra-bundle": "2.2.*",
+        "sensio/generator-bundle": "2.2.*",
+        "jms/security-extra-bundle": "1.4.*",
+        "jms/di-extra-bundle": "1.3.*",
+        "nelmio/alice":             "*",
+        "fzaninotto/faker":         "*",
         "mopa/bootstrap-bundle": "dev-master",
-        "knplabs/rad-bundle": "dev-develop"
+        "knplabs/rad-bundle": "dev-develop",
+        "friendsofsymfony/rest-bundle": "dev-remove_conflict",
+        "jms/serializer-bundle": "dev-master"
     },
     "require-dev": {
-        "behat/behat": "2.4.*",
-        "behat/symfony2-extension": "*",
-        "behat/mink-extension": "*",
-        "behat/mink-browserkit-driver": "*",
-        "phpspec/phpspec2": "dev-develop"
+        "phpspec/phpspec2":                   "dev-develop",
+        "symfony/swiftmailer-bundle":         "2.2.*",
+        "twig/twig":                          ">=1.11.0,<2.0"
+    },
+    "suggest": {
+        "symfony/form":                      "To take advantage of the Rad Form Manager",
+        "symfony/security":                  "To take advantage of the Rad User Interface",
+        "doctrine/doctrine-fixtures-bundle": "To Take advantage of the Rad Doctrine AbstractFixture",
+        "symfony/swiftmailer-bundle":        "To take advantage of the Rad mailer logger in your tests",
+        "doctrine/orm":                      "To take advantage of the Rad password hash updater listener"
     },
     "minimum-stability": "dev",
     "config": {

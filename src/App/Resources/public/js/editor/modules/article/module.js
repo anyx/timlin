@@ -1,13 +1,23 @@
-define(['app', 'module', './Controller', './Layout'], function(app, module, Controller, Layout) {
+define(
+    [
+        'app',
+        './Controller',
+        './Layout',
+        './models/ArticleCollection'
+    ],
+    function(application, Controller, Layout, ArticleCollection) {
+  
+        application.getEntityManager().registerCollection('Article', new ArticleCollection);
 
-    return app.module('article', function() {
-        
-        this.module = module,
-        
-        this.controllers  = [
-            new Controller({
-                Layout  : Layout
-            })
-        ]
-    });
-});
+        return application.module('article', function() {
+
+            this.startWithParent = false;
+
+            this.controllers  = [
+                new Controller({
+                    Layout  : Layout
+                })
+            ]
+        });
+    }
+);
