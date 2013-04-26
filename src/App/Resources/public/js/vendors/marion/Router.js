@@ -50,6 +50,10 @@ define(['marionette'], function(Marionette) {
             return result;
         },
         
+        navigateToRoute: function(route, params, options) {
+            return this.navigate(this.generate(route, params, false), options);
+        },
+        
         /**
          * 
          */

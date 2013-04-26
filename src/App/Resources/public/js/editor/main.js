@@ -1,5 +1,6 @@
 require.config({
     paths: {
+        'jquery'        : '/bundles/app/js/vendors/jquery',
         'jquery.ui'     : '/bundles/app/js/vendors/jquery-ui/js/jquery-ui-1.10.1.custom.min',
         'underscore'    : '/bundles/app/js/vendors/underscore',
         'backbone'      : '/bundles/app/js/vendors/backbone',
@@ -11,6 +12,7 @@ require.config({
         'tpl'           : '/bundles/app/js/vendors/require.js/tpl'
     },
     shim: {
+        'jquery.ui': ['jquery'],
         underscore: {
             exports: '_'
         },

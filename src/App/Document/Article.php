@@ -24,6 +24,11 @@ class Article
      */
     protected $text;
 
+    public function __construct($title)
+    {
+        $this->title = $title;
+    }
+    
     public function getId()
     {
         return $this->id;

@@ -1,6 +1,9 @@
-Rest:Timeline:
-    collections: [index, personal]
-    resources: [show, update, delete, edit]
-    
-Rest:Article:
-    resources: [show, update, delete, edit]
+timeline:
+    type: rest
+    resource: Rest\Controller\TimelineController
+    name_prefix: rest_timeline_
+      
+article:
+    type: rest
+    resource: Rest\Controller\ArticleController
+    name_prefix: rest_article_

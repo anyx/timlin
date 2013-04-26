@@ -1,12 +1,12 @@
 {
-    "name": "knplabs/rad-edition",
-    "description": "The \"KnpLabs Symfony2 Rad Edition\"",
-    "keywords": ["Symfony2", "Symfony2 Rad Edition", "Symfony2 Distribution"],
+    "name": "timlin",
+    "description": "",
+    "keywords": ["Symfony2", "Symfony2 Distribution"],
     "license":     "MIT",
     "authors": [
         {
-            "name":     "Knplabs",
-            "homepage": "http://knplabs.com"
+            "name":     "anyx",
+            "homepage": "http://anyx.me"
         }
     ],
     "require": {
@@ -26,7 +26,6 @@
         "nelmio/alice":             "*",
         "fzaninotto/faker":         "*",
         "mopa/bootstrap-bundle": "dev-master",
-        "knplabs/rad-bundle": "dev-develop",
         "friendsofsymfony/rest-bundle": "dev-remove_conflict",
         "jms/serializer-bundle": "dev-master"
     },
@@ -39,8 +38,7 @@
         "symfony/form":                      "To take advantage of the Rad Form Manager",
         "symfony/security":                  "To take advantage of the Rad User Interface",
         "doctrine/doctrine-fixtures-bundle": "To Take advantage of the Rad Doctrine AbstractFixture",
-        "symfony/swiftmailer-bundle":        "To take advantage of the Rad mailer logger in your tests",
-        "doctrine/orm":                      "To take advantage of the Rad password hash updater listener"
+        "symfony/swiftmailer-bundle":        "To take advantage of the Rad mailer logger in your tests"
     },
     "minimum-stability": "dev",
     "config": {
@@ -49,16 +47,14 @@
     "autoload": {
         "psr-0": { "": "src/", "Context": "features/" }
     },
-     "scripts": {
+    "scripts": {
         "post-install-cmd": [
-            "Knp\\RadBundle\\Composer\\ScriptHandler::installParametersFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
-            "Knp\\RadBundle\\Composer\\ScriptHandler::installParametersFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",

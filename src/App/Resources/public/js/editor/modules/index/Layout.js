@@ -43,6 +43,10 @@ define(
                 createDeffered
             );
             
+            createDeffered.done(function(){
+                application.getRouter().navigateToRoute('article-edit', {id:entity.id}, true);
+            });
+            
             application.loader('Создание статьи...', createDeffered);
             return false;
         }

@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Knp\RadBundle\AppBundle\Bundle;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class App extends Bundle
 {

@@ -52,5 +52,29 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
+sensio_framework_extra:
+    view:    { annotations: false }
+    router:  { annotations: true }
+    
+fos_rest:
+    param_fetcher_listener: force
+    body_listener: true
+    format_listener:
+        default_priorities: [html, json, '*/*']
+        fallback_format: json
+        prefer_extension: true
+    view:
+        view_response_listener: 'force'
+        mime_types:
+            json: ['application/json', 'application/x-json', 'application/vnd.example-com.foo+json']
+            rss: 'application/rss+xml'
+            jpg: 'image/jpeg'
+            png: 'image/png'
+            
 services:
-  dm: @doctrine_mongodb.odm.document_manager
+    dm: "@doctrine_mongodb.odm.document_manager"
+    doctrine_mongo_db_param_converter:
+        class: Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter
+        arguments: ["@doctrine_mongodb"]
+        tags:
+          - {name: "request.param_converter", converter: "doctrine.odm"}

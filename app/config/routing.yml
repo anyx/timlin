@@ -1,8 +1,11 @@
 app:
     resource: "@App/Resources/config/routing.yml"
-    type:     "rad_convention"
 
 rest:
+    type: rest
     resource: "@Rest/Resources/config/routing.yml"
-    type:     "rad_convention"
     prefix:   rest
+
+article:
+    resource: "@App/Controller/ArticleController.php"
+    type:     annotation

@@ -4,12 +4,12 @@ namespace Rest\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use App\Controller\Controller as AppController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * 
  */
-class TimelineController extends AppController
+class TimelineController extends Controller
 {
     /**
      * 

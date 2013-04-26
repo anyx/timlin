@@ -58,7 +58,10 @@ if (!window.mercuryPackages) window.mercuryPackages = {
   // created, so for instance you could put `visible=false`, and the editor be hidden after it's created.
   var options = {
     // A path or url from which the javascripts and css should be loaded.
+   /*
     src: '/assets',
+    */
+    src: '/bundles/app/js/vendors/mercury/build',
     // A value defined in the packages above.  Development is used by default.  If you want to provide your own package
     // you can just define one before including this script.
     pack: 'development'
@@ -66,7 +69,7 @@ if (!window.mercuryPackages) window.mercuryPackages = {
 
   // Hide the document during loading so there isn't a flicker while mercury is being loaded.
   var head = document.getElementsByTagName("head")[0];
-  if (window == top) {
+    if (window == top) {
     var style = document.createElement('style');
     var rules = document.createTextNode('body{visibility:hidden;display:none}');
     style.type = 'text/css';
@@ -179,10 +182,15 @@ if (!window.mercuryPackages) window.mercuryPackages = {
     loadMercury();
   }
 
+    $(function(){
+        loadMercury();
+    })
+    /*
   if (document.addEventListener) {
     document.addEventListener('DOMContentLoaded', loadMercury, false);
   } else {
     document.observe('readystatechange', checkReadyState);
     if (window == top) { timer = pollDoScroll.defer(); }
   }
+  */
 })();

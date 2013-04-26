@@ -2,10 +2,17 @@
 
 namespace App\Controller;
 
-class IndexController
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class IndexController extends Controller
 {
+    /**
+     * 
+     */
     public function indexAction()
     {
-        return [];
+        return $this->render(
+            'App:Index:index.html.twig'
+        );
     }
 }
