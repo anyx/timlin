@@ -41,12 +41,5 @@ require.config({
 });
 
 require(['mercury'], function(mercury) {
-    /*
-    jQuery('body').trigger('initialize:frame');
-    jQuery(window).on('mercury:ready', function() {
-        Mercury.saveUrl = '/content'; 
-        console.log('ready')
-    });
-    */
-    console.log('sad');
+    
 })

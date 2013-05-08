@@ -3,19 +3,19 @@
 {% block javascripts %}
 {{parent()}}
 <script type="text/javascript">
-    var appConfig = {
-        'container'         : '.j-container',
+    var require = {
+        config: {
+            mercury: {
+                'saveUrl'       : '{{path('rest_article_put_articles', {'article' : article.id})}}'
+            },
+        }
     };
     </script>
     <script data-main="{{asset('/bundles/app/js/preview/article')}}" src="{{asset('/bundles/app/js/vendors/require.js/require.js')}}"></script>
-{#
-    <script src="{{asset('/bundles/app/js/vendors/mercury/javascripts/mercury_loader.js')}}"></script>
-#}
-
 {% endblock %}
 
 {% block body %}
 <div id="primary" data-mercury="full">
-    <h2>Preview</h2>
+   {{article.text | raw}}
 </div>
 {% endblock body %}

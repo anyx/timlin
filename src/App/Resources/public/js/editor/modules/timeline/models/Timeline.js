@@ -1,12 +1,8 @@
 define(['backbone', 'module'], function(Backbone, module) {
     return Backbone.Model.extend({
 
-        _url: module.config().url,
-        
-        url : function() {
-            return this._url + this.id;
-        },
-        
+        url: module.config().url,
+
         initialize  : function(options) {
         },
         

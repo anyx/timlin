@@ -5,9 +5,10 @@ namespace Rest\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
 
 /**
- * 
+ * @RouteResource("Timeline")
  */
 class TimelineController extends Controller
 {
@@ -15,7 +16,7 @@ class TimelineController extends Controller
      * 
      * @return array
      */
-    public function indexAction()
+    public function cgetAction()
     {
         return new Response(json_encode([]));
     }
@@ -25,7 +26,7 @@ class TimelineController extends Controller
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction($id)
+    public function getAction($id)
     {
         return new Response(json_encode(
                 [
@@ -44,10 +45,5 @@ class TimelineController extends Controller
                     ]
                 ]
         ));
-    }
-    
-    public function listAction()
-    {
-        
     }
 }

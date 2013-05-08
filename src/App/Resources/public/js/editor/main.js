@@ -4,6 +4,7 @@ require.config({
         'jquery.ui'     : '/bundles/app/js/vendors/jquery-ui/js/jquery-ui-1.10.1.custom.min',
         'underscore'    : '/bundles/app/js/vendors/underscore',
         'backbone'      : '/bundles/app/js/vendors/backbone',
+        'bootstrap'     : '/bundles/app/js/vendors/bootstrap/js/bootstrap.min',
         'marionette'    : '/bundles/app/js/vendors/backbone.marionette/lib/backbone.marionette',
         'moment'        : '/bundles/app/js/vendors/moment',
         'marion'        : '/bundles/app/js/vendors/marion',
@@ -12,15 +13,16 @@ require.config({
         'tpl'           : '/bundles/app/js/vendors/require.js/tpl'
     },
     shim: {
+        'bootstrap': ['jquery'],
         'jquery.ui': ['jquery'],
-        underscore: {
+        'underscore': {
             exports: '_'
         },
-        backbone: {
+        'backbone': {
             deps: ['underscore'],
             exports: 'Backbone'
         },
-        marionette : {
+        'marionette' : {
             exports : 'Backbone.Marionette',
             deps : ['backbone']
         },
@@ -30,6 +32,7 @@ require.config({
         }
     },
     deps: [
+        'bootstrap',
         'jquery.ui',
         'underscore',
         'backbone',

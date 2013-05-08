@@ -7,13 +7,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
+
+use App\Document\Article;
 
 /**
- * 
+ * @RouteResource("Article")
  */
 class ArticleController extends Controller
 {
-    public function indexAction()
+    public function cgetAction()
     {
         
     }
@@ -22,7 +25,7 @@ class ArticleController extends Controller
      * @View
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
-    public function newAction(Request $request)
+    public function cpostAction(Request $request)
     {
         $title = trim($request->get('title'));
         if (empty($title)) {
@@ -30,6 +33,35 @@ class ArticleController extends Controller
         }
         
         $article = new \App\Document\Article($title);
+        
+        $dm = $this->get('dm');
+        $dm->persist($article);
+        
+        $dm->flush();
+        
+        return $article;
+    }
+
+    /**
+     * 
+     * @View
+     * 
+     * @param \Rest\Controller\Article $article
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \App\Document\Article
+     * @throws HttpException
+     */
+    public function cputAction(Article $article, Request $request)
+    {
+        $fullContent = $request->get('content');
+        
+        if (empty($fullContent) || !array_key_exists('primary', $fullContent)) {
+            throw new HttpException(400, 'Article content missing');
+        }
+        
+        $content = $fullContent['primary'];
+        
+        $article->setContent($content);
         
         $dm = $this->get('dm');
         $dm->persist($article);

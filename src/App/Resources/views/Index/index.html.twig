@@ -9,10 +9,10 @@
                 'container': '.j-container',
             },
             'modules/timeline/models/Timeline' : {
-                url : '{{path('rest_timeline_index')}}'
+                url : '{{path('rest_timeline_get_timelines')}}'
             },
             'modules/article/models/ArticleCollection' : {
-                url : '{{path('rest_article_index')}}'
+                url : '{{path('rest_article_get_articles')}}'
             }
         }
     };
@@ -26,6 +26,25 @@
 {% endblock %}
     
 {% block content %}
+    <div class="b-top-panel clearfix">
+        <a href="#" class="b-logo pull-left span2">ReLiter</a>
+        
+        <div class="b-userbar pull-right span2">
+            <i class="icon-user"></i>
+            User
+        </div>
+        
+        <div class="b-main-bar span10">
+            <div class="b-main-bar__item b-doc-title">
+                <i class="icon-time"></i>
+                My First Document
+            </div>
+            
+            <div class="b-main-bar__item b-version">
+                <i class="icon-pushpin"></i> 0.2
+            </div>
+        </div>
+    </div>
     <div class="j-container b-app-container"></div>
     
     <div id="j-loader" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">

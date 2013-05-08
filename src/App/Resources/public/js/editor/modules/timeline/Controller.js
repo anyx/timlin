@@ -20,7 +20,6 @@ define(['marion/Controller', './models/Timeline'], function(Controller, Timeline
                     _this.setLayout(new _this.options.Layout);
                 })
                 .error(function(){
-                    
                 })
         }
     });

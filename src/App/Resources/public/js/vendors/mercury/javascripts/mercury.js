@@ -4228,7 +4228,7 @@ Showdown.converter = function() {
 (function() {
 
   this.Mercury.PageEditor = (function() {
-
+      
     function PageEditor(saveUrl, options) {
       var token;
       this.saveUrl = saveUrl != null ? saveUrl : null;
