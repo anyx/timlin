@@ -42,7 +42,6 @@ define(
                 },
                 createDeffered
             );
-            
             createDeffered.done(function(){
                 application.getRouter().navigateToRoute('article-edit', {id:entity.id}, true);
             });

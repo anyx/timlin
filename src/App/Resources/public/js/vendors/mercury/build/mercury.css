@@ -2038,9 +2038,12 @@ label input[type=radio] {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+  background: rgb(225, 238, 243);
+  /*
   background: #DDD;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(198,198,198)), color-stop(1, rgb(226,225,226)));
   background-image: -moz-linear-gradient(center bottom, rgb(198,198,198) 0%, rgb(226,225,226) 100%);
+  */
   border-bottom: 1px solid #727272;
   cursor: default;
 }
@@ -2116,6 +2119,7 @@ label input[type=radio] {
   height: 58px;
   overflow: hidden;
   text-shadow: #EEE 0 1px 0;
+  background: rgb(225, 238, 243);
 }
 .mercury-primary-toolbar .mercury-button {
   display: inline-block;
@@ -2167,8 +2171,10 @@ label input[type=radio] {
 .mercury-editable-toolbar {
   padding: 3px 13px 1px 10px;
   border-top: 1px solid #E2E1E2;
+  /*
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(198,198,198)), color-stop(1, rgb(210,210,209)));
   background-image: -moz-linear-gradient(center bottom, rgb(198,198,198) 0%, rgb(210,210,209) 100%);
+  */
 }
 .mercury-editable-toolbar:after {
   content: '\00a0';

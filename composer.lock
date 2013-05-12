@@ -1233,61 +1233,6 @@
             "time": "2013-03-14 09:30:30"
         },
         {
-            "name": "knplabs/rad-bundle",
-            "version": "dev-develop",
-            "target-dir": "Knp/RadBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/KnpRadBundle.git",
-                "reference": "v2.3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpRadBundle/zipball/v2.3",
-                "reference": "v2.3",
-                "shasum": ""
-            },
-            "require": {
-                "fzaninotto/faker": "*",
-                "nelmio/alice": "*",
-                "php": ">=5.3.3",
-                "symfony/symfony": "2.2.*"
-            },
-            "require-dev": {
-                "doctrine/doctrine-fixtures-bundle": "dev-master",
-                "doctrine/orm": ">=2.2,<3.0,>=2.2.3",
-                "phpspec/phpspec2": "dev-develop",
-                "symfony/swiftmailer-bundle": "2.2.*",
-                "twig/twig": ">=1.11.0,<2.0"
-            },
-            "suggest": {
-                "doctrine/doctrine-fixtures-bundle": "To Take advantage of the Rad Doctrine AbstractFixture",
-                "doctrine/orm": "To take advantage of the Rad password hash updater listener",
-                "symfony/form": "To take advantage of the Rad Form Manager",
-                "symfony/security": "To take advantage of the Rad User Interface",
-                "symfony/swiftmailer-bundle": "To take advantage of the Rad mailer logger in your tests"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Knp\\RadBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Knplabs",
-                    "homepage": "http://knplabs.com"
-                }
-            ],
-            "description": "The \"KnpLabs Rad Edition\" bundle",
-            "homepage": "http://rad.knplabs.com",
-            "time": "2013-04-16 13:02:41"
-        },
-        {
             "name": "kriswallsmith/assetic",
             "version": "dev-master",
             "source": {
@@ -2447,7 +2392,6 @@
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 20,
         "mopa/bootstrap-bundle": 20,
-        "knplabs/rad-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
         "jms/serializer-bundle": 20,
         "phpspec/phpspec2": 20

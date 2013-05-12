@@ -1,15 +1,13 @@
-define(['marion/Controller'], function(Controller) {
+define(['marion/Controller', 'views/DocumentPanel', 'module'], function(Controller, DocumentPanelView, module) {
 
     return Controller.extend({
+        
+        previewUrl: module.config().previewUrl,
         
         routes : {
             'article-edit'  : {
                 'pattern'   : 'editor/article/:id',
                 'action'    : 'editAction'
-            },
-            'article-preview'  : {
-                'pattern'   : 'preview/article/:id',
-                'action'    : 'previewAction'
             }
         },
         
@@ -20,38 +18,31 @@ define(['marion/Controller'], function(Controller) {
         },
         
         editAction : function(id) {
-            
             this.setLayout(this.layout);
             
-            var content = '<div><h3>Content</h3></div>';
-            var contentFrame = this.layout.getContentFrame();
-            contentFrame.attr('src', this.getPreviewUrl());
+            var contentIframe = this.layout.getContentFrame();
+            contentIframe.attr('src', this.getPreviewUrl(id));
             
-            /*
-            contentFrame.attr('src', 'data:text/html;charset=utf-8,' + content);
-            var src = 'http://timlin.local/bundles/app/js/vendors/mercury/javascripts/mercury_loader.js';
-            var script = '<script type="text/javascript" src="'+src+'"></script>';
+            var iframeLoading = new $.Deferred();
+            contentIframe    
+                .load(function() {
+                    iframeLoading.resolve();
+                })
+            ;
             
-            //contentFrame.contents().find('head').append(script);
-            console.log(contentFrame.find('head'));
-            */
+            var layout = this.layout;
+            var modelLoading = this.getApplication().getEntityManager().fetch('Article', id);
+            modelLoading.done(function(data, status, deferred, article) {
+                $.when(modelLoading, iframeLoading).done(function() {
+                    layout.documentPanel.show(new DocumentPanelView({
+                       model : article
+                    }));
+                });
+            });
         },
-        
-        previewAction: function(id) {
-            /*
-            var articleCollection = this.getApplication().getEntityManager().getCollection('Article'); 
-            var article = articleCollection.recieve(id);
-            console.log('pe', articleCollection);
-            */
-        },
-        
+                
         getPreviewUrl: function(id) {
-            /*
-            var previewRoute = this.getApplication().getRouter().generate('article-preview', {id:id});
-            return window.location.origin + window.location.pathname + previewRoute;
-            */
-           return 'http://timlin.local/app_dev.php/preview/article/517ae2e1d0621eca30000000';
+           return this.previewUrl.split(':id').join(id);
         }
     });
 });
-

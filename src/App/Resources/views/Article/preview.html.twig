@@ -14,8 +14,17 @@
     <script data-main="{{asset('/bundles/app/js/preview/article')}}" src="{{asset('/bundles/app/js/vendors/require.js/require.js')}}"></script>
 {% endblock %}
 
+{% block stylesheets %}
+    {{parent()}}
+    <link type="text/css" rel="stylesheet" href="{{asset('/bundles/app/css/article-editor.css')}}" />
+{% endblock %}
+    
 {% block body %}
-<div id="primary" data-mercury="full">
-   {{article.text | raw}}
+<div class="b-article-editor-area">
+    <div class="b-article-container span9 offset3">
+        <div id="j-article-content" class="b-article-content" data-mercury="full">
+        {{article.text | raw}}
+        </div>
+    </div>
 </div>
 {% endblock body %}

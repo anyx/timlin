@@ -38,6 +38,30 @@ define(['backbone'], function(Backbone){
             return this.getCollection(collectionName).create(modelAttributes, createOptions);
         },
         
+        fetch: function(collectionName, entityId) {
+            var collection = this.getCollection(collectionName);
+            var entity = new collection.model({id: entityId});
+            entity.collection = collection;
+            
+            var resultDeferred = new $.Deferred();
+            
+            var fetchDeferred = entity.fetch();
+            fetchDeferred
+                .done(function() {
+                    var resultArguments = _.toArray(arguments);
+                    resultArguments.push(entity);
+
+                    resultDeferred.resolve.apply(resultDeferred, resultArguments);
+                })
+                .fail(function(){
+                    var resultArguments = _.toArray(arguments);
+                    resultArguments.push(entity);
+
+                    resultDeferred.reject.apply(resultDeferred, resultArguments);
+                })
+            return resultDeferred.promise();
+        },
+        
         initialize: function() {}
         
     });

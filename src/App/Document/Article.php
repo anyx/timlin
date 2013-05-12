@@ -7,68 +7,40 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 /**
  * @MongoDB\Document
  */
-class Article
+class Article extends AbstractDocument
 {
     /**
-     * @MongoDB\Id
+     * @MongoDB\EmbedMany(targetDocument="ArticleContent")
      */
-    protected $id;
+    protected $versions = array();
 
     /**
-     * @MongoDB\String
+     * 
+     * @param \App\Document\AbstractContent $content
+     * @return \App\Document\ArticleContent
      */
-    protected $title;
-
-    /**
-     * @MongoDB\String
-     */
-    protected $text;
-
-    /**
-     * @MongoDB\Hash
-     */
-    protected $content;
-
-    public function __construct($title)
+    public function createVersionContent(AbstractContent $content = null)
     {
-        $this->title = $title;
-    }
-    
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
+        return new ArticleContent();
     }
 
     public function getText()
     {
-        return $this->text;
+        return $this->getCurrentVersion()->getText();
     }
 
     public function setText($text)
     {
-        $this->text = $text;
+        $this->getCurrentVersion()->setText($text);
     }
     
     public function getContent()
     {
-        return $this->content;
+        return $this->getCurrentVersion()->getContent();
     }
-
+    
     public function setContent($content)
     {
-        $this->content = $content;
-        if (array_key_exists('value', $content)) {
-            $this->setText($content['value']);
-        }
+        return $this->getCurrentVersion()->setContent($content);
     }
 }

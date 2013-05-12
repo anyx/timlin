@@ -6,14 +6,19 @@
     var require = {
         config: {
             app : {
-                'container': '.j-container',
+                'container'     : '.j-app-container',
+                'top-panel'     : '.j-top-panel',
+                'document-panel': '.j-document-panel' 
             },
             'modules/timeline/models/Timeline' : {
                 url : '{{path('rest_timeline_get_timelines')}}'
             },
             'modules/article/models/ArticleCollection' : {
                 url : '{{path('rest_article_get_articles')}}'
-            }
+            },
+            'modules/article/Controller' : {
+                previewUrl : '{{url('app_article_preview', {'id' : ':id'})}}'
+            },
         }
     };
     </script>
@@ -26,7 +31,9 @@
 {% endblock %}
     
 {% block content %}
-    <div class="b-top-panel clearfix">
+<div class="b-editor-container">
+
+    <div class="b-top-panel j-top-panel">
         <a href="#" class="b-logo pull-left span2">ReLiter</a>
         
         <div class="b-userbar pull-right span2">
@@ -45,12 +52,14 @@
             </div>
         </div>
     </div>
-    <div class="j-container b-app-container"></div>
-    
+
+    <div class="j-app-container b-app-container"></div>
+
     <div id="j-loader" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
         <div class="">
             <i class="icon-spinner icon-spin icon-2x pull-left"></i>
             <span class="j-text"></span>
         </div>
     </div>
+</div>
 {% endblock %}

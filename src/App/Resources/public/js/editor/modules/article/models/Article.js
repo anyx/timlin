@@ -1,5 +1,5 @@
-define(['backbone'], function(Backbone) {
-    return Backbone.Model.extend({
+define(['models/Document'], function(Document) {
+    return Document.extend({
 
     });
 });

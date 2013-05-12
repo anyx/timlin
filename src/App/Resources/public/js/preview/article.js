@@ -41,5 +41,5 @@ require.config({
 });
 
 require(['mercury'], function(mercury) {
-    
+
 })
