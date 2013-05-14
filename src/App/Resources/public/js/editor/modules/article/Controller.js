@@ -1,4 +1,4 @@
-define(['marion/Controller', 'views/DocumentPanel', 'module'], function(Controller, DocumentPanelView, module) {
+define(['marion/Controller', 'module'], function(Controller, module) {
 
     return Controller.extend({
         
@@ -34,9 +34,7 @@ define(['marion/Controller', 'views/DocumentPanel', 'module'], function(Controll
             var modelLoading = this.getApplication().getEntityManager().fetch('Article', id);
             modelLoading.done(function(data, status, deferred, article) {
                 $.when(modelLoading, iframeLoading).done(function() {
-                    layout.documentPanel.show(new DocumentPanelView({
-                       model : article
-                    }));
+                    layout.setArticle(article);
                 });
             });
         },

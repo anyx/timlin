@@ -1,0 +1,1 @@
+<a href="#" class="j-hide-document-button b-editor__hide-button"></a>
