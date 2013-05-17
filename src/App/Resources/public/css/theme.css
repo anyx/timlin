@@ -27,3 +27,17 @@ input[type="color"], .uneditable-input
 {
     border-radius: 2px;
 }
+
+/* SIZES */
+input, textarea, .uneditable-input {
+    width: auto;
+}
+.b-editor__document-panel {
+    width: 200px;
+}
+.b-editor__workspace {
+    margin-left: 212px;
+}
+.b-editor__workspace__width-full {
+    margin-left: 12px;
+}

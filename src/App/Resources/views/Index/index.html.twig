@@ -8,12 +8,15 @@
             app : {
                 'container'         : '.j-app-container',
                 'top-panel'         : '.j-top-panel',
-                'document-panel'    : '.j-document-panel',
-                'document-panel-switcher': '.j-editor-switcher', 
-                'article-content'   : '.j-article-content'
             },
-            'modules/timeline/models/Timeline' : {
-                url : '{{path('rest_timeline_get_timelines')}}'
+            'modules/article/Layout' : {
+                'document-panel'            : '.j-document-panel',
+                'document-panel-switcher'   : '.j-editor-switcher', 
+                'workspace'                 : '.j-editor-workspace',
+                'article-content'           : '.j-article-content'
+            },
+            'modules/article/views/Workspace' : {
+                previewUrl : '{{url('app_article_preview', {'id' : ':id'})}}'
             },
             'modules/article/models/ArticleCollection' : {
                 url : '{{path('rest_article_get_articles')}}'
@@ -21,6 +24,10 @@
             'modules/article/Controller' : {
                 previewUrl : '{{url('app_article_preview', {'id' : ':id'})}}'
             },
+            //Timeline
+            'modules/timeline/models/Timeline' : {
+                url : '{{path('rest_timeline_get_timelines')}}'
+            }
         }
     };
     </script>

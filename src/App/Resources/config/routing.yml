@@ -1,3 +1,7 @@
 app:
     pattern: /
     defaults: { _controller: App:Index:index }
+    
+test:
+    pattern: /test
+    defaults: { _controller: App:Index:test}

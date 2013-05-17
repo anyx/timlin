@@ -14,7 +14,7 @@ define(['marion/Controller'], function(Controller) {
                 application : this.getApplication()
             });
             
-            this.setLayout(layout);
+            this.showLayout(layout);
         }
     });
 });

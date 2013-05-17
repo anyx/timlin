@@ -11,7 +11,7 @@ define(['marionette'], function(Marionette) {
             this.application = application;
         },
         
-        setLayout: function(layout) {
+        showLayout: function(layout) {
             this.getApplication().layout.show(layout);
         }
     });

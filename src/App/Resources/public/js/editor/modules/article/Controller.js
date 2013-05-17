@@ -2,8 +2,6 @@ define(['marion/Controller', 'module'], function(Controller, module) {
 
     return Controller.extend({
         
-        previewUrl: module.config().previewUrl,
-        
         routes : {
             'article-edit'  : {
                 'pattern'   : 'editor/article/:id',
@@ -18,29 +16,16 @@ define(['marion/Controller', 'module'], function(Controller, module) {
         },
         
         editAction : function(id) {
-            this.setLayout(this.layout);
-            
-            var contentIframe = this.layout.getContentFrame();
-            contentIframe.attr('src', this.getPreviewUrl(id));
-            
-            var iframeLoading = new $.Deferred();
-            contentIframe    
-                .load(function() {
-                    iframeLoading.resolve();
-                })
-            ;
-            
             var layout = this.layout;
+            var _this = this;
+            
             var modelLoading = this.getApplication().getEntityManager().fetch('Article', id);
+            this.getApplication().loader('Loading article', modelLoading);
+            
             modelLoading.done(function(data, status, deferred, article) {
-                $.when(modelLoading, iframeLoading).done(function() {
-                    layout.setArticle(article);
-                });
+                layout.setArticle(article);
+                _this.showLayout(layout);
             });
-        },
-                
-        getPreviewUrl: function(id) {
-           return this.previewUrl.split(':id').join(id);
         }
     });
 });

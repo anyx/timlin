@@ -2,16 +2,20 @@ define(
     [
         'marionette',
         'app',
+        'module',
         'tpl!./templates/Layout.phtml',
         'views/DocumentPanel',
-        'views/DocumentPanelSwitcher'
+        'views/DocumentPanelSwitcher',
+        './views/Workspace'
     ],
     function(
         Marionette,
         app,
+        module,
         template,
         DocumentPanelView,
-        DocumentPanelSwitcherView
+        DocumentPanelSwitcherView,
+        WorkspaceView
     ) {
 
     return Marionette.Layout.extend({
@@ -19,10 +23,11 @@ define(
         template        : template,
         
         className       : 'b-article-layout',
-        
+
         regions         : {
-            documentPanel   : app.options['document-panel'],
-            documentPanelSwitcher: app.options['document-panel-switcher']
+            documentPanel   : module.config()['document-panel'],
+            documentPanelSwitcher: module.config()['document-panel-switcher'],
+            workspace       : module.config()['workspace']
         },
         
         article         : null,
@@ -39,38 +44,41 @@ define(
         },
         
         onShow: function() {
-            var _this = this;
-            this.initDimensions();
-            
+
             var panelSwitcher = new DocumentPanelSwitcherView();
             var documentPanel = new DocumentPanelView({
                 model : this.getArticle()
             });
+            var workspace = new WorkspaceView({
+                model: this.getArticle()
+            });
+            
             this.documentPanel.show(documentPanel);
             
-            this.documentPanelSwitcher.show(panelSwitcher)
+            this.documentPanelSwitcher.show(panelSwitcher);
             panelSwitcher.on('toggle-document-panel', function() {
-                documentPanel.$el.parent().toggle(0, function() {
-                    _this.setEditorWidth();
+                documentPanel.$el.parent().toggle(0, function(){
+                    workspace.$el.parent().toggleClass('b-editor__workspace__width-full');
                 });
             });
+            
+            this.workspace.show(workspace);
         },
 
         initDimensions: function() {
             /* Calc layout width */
-            
-            this.getContentFrame().load(this.setEditorWidth);
-            $(window).resize(this.setEditorWidth);
         },
         
         setEditorWidth : function () {
-                var articleContentElement = $(app.options['article-content']);
-                if (articleContentElement.length == 0) {
-                    return;
-                }
-                
-                articleContentElement
-                    .css('width', articleContentElement.parent().width() - articleContentElement.position().left -1 + 'px');
+            /*
+            var articleContentElement = $(app.options['article-content']);
+            if (articleContentElement.length == 0) {
+                return;
+            }
+
+            articleContentElement
+                .css('width', articleContentElement.parent().width() - articleContentElement.position().left -1 + 'px');
+            */
         },
 
 

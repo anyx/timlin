@@ -22,6 +22,8 @@ define(['marion/Application', 'marion/EntityManager'], function(Application, Ent
                     app.showError('Внутренная ошибка сервера');
                     modal.modal('hide');
                 });
+                
+            return deferred;
         },
         
         showError : function(text) {
