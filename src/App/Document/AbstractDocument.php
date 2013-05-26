@@ -24,7 +24,7 @@ abstract class AbstractDocument
     /**
      * @MongoDB\String
      */
-    protected $description;
+    protected $description = '';
     
     /**
      * @MongoDB\Date
@@ -60,6 +60,7 @@ abstract class AbstractDocument
         $this->title = $title;
 
         $content = $this->createVersionContent();
+        $content->setTitle('1');
         $this->addVersion($content);
         $this->setCurrentVersionId($content->getId());
     }
@@ -158,11 +159,11 @@ abstract class AbstractDocument
 
     public function createVersion()
     {
-        $this->addVersion(
-            $this->createVersionContent(
-                $this->getCurrentVersion()
-            )
+        $version = $this->createVersionContent(
+            $this->getCurrentVersion()
         );
+        $version->setTitle($this->getCountVersions());
+        $this->addVersion($version);
     }
 
     /**

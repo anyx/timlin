@@ -4,14 +4,14 @@ define(['./Application', 'module'], function(Application, module) {
 
     app.on('start', function(options) {
         app.addRegions({
-            layout: this.options.container
+            layout: this.options.selectors.container
         });
     });
     
     /* Calc layout height */
     var setEditorHeight = function () {
-        $(app.options['container'])
-            .css('height', $(window).height() - $(app.options['top-panel']).height() + 'px');
+        $(app.options.selectors.container)
+            .css('height', $(window).height() - $(app.options.selectors['top-panel']).height() + 'px');
     };
     
     setEditorHeight();

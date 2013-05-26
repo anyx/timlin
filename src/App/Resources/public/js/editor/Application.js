@@ -1,4 +1,4 @@
-define(['marion/Application', 'marion/EntityManager'], function(Application, EntityManager) {
+define(['marion/Application', 'marion/EntityManager', 'views/Dialog'], function(Application, EntityManager, DialogView) {
 
     return Application.extend({
 
@@ -24,6 +24,14 @@ define(['marion/Application', 'marion/EntityManager'], function(Application, Ent
                 });
                 
             return deferred;
+        },
+        
+        dialog: function(title, contentView) {
+            return new DialogView({
+                el      : $(this.options.selectors['dialog']),
+                title   : title,
+                content : contentView
+            }).render();
         },
         
         showError : function(text) {

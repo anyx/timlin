@@ -1,7 +1,6 @@
 define(
     [
         'marionette',
-        'app',
         'module',
         'tpl!./templates/Layout.phtml',
         'views/DocumentPanel',
@@ -10,7 +9,6 @@ define(
     ],
     function(
         Marionette,
-        app,
         module,
         template,
         DocumentPanelView,

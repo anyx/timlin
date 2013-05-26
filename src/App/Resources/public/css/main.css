@@ -167,6 +167,10 @@ body {
     line-height: 20px;
 }
 
+.b-document-form {
+    padding: 5px 5px 5px 10px;
+}
+
 /* ARTICLE */
 .b-article-layout {
     height: 100%;

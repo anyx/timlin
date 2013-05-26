@@ -1,0 +1,15 @@
+<form action="">
+    <label for="">Version</label>
+    <select name="version">
+        <% _.each(document.getVersions(), function(version) { %>
+        <option value="<%-version.id%>" <% if(document.getCurrentVersionId() == version.id) {%> selected <%}%> >
+                <%-version.getTitle()%>
+        </option>
+        <% }) %>
+    </select>
+    
+    <div class="j-version-data"></div>
+    
+    <input type="button" class="btn-inverse" value="Change version" />
+    <input type="button" class="btn-primary" value="Create new version"/>
+</form>

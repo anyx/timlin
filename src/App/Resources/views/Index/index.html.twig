@@ -6,8 +6,12 @@
     var require = {
         config: {
             app : {
-                'container'         : '.j-app-container',
-                'top-panel'         : '.j-top-panel',
+                'selectors' : {
+                    'container'         : '.j-app-container',
+                    'top-panel'         : '.j-top-panel',
+                    'dialog'            : '#j-dialog',
+                    'dialog-content'    : '.j-dialog-content'
+                }
             },
             'modules/article/Layout' : {
                 'document-panel'            : '.j-document-panel',
@@ -69,6 +73,9 @@
             <i class="icon-spinner icon-spin icon-2x pull-left"></i>
             <span class="j-text"></span>
         </div>
+    </div>
+    
+    <div id="j-dialog" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
     </div>
 </div>
 {% endblock %}

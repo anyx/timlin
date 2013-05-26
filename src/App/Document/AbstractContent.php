@@ -20,6 +20,16 @@ abstract class AbstractContent
     protected $parent;
 
     /**
+     * @MongoDB\String
+     */
+    protected $title;
+
+    /**
+     * @MongoDB\Boolean
+     */
+    public $piblished = false;
+
+    /**
      * 
      * @param \App\Document\AbstractContent $parent
      */
@@ -29,5 +39,43 @@ abstract class AbstractContent
         if (!empty($parent)) {
             $this->parent = $parent;
         }
+    }
+
+    /**
+     * 
+     * @return \App\Document\AbstractContent
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * 
+     * @param \App\Document\AbstractContent $parent
+     */
+    public function setParent(AbstractContent $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+    
+    public function isPiblished()
+    {
+        return $this->piblished;
+    }
+
+    public function piblish()
+    {
+        $this->piblished = true;
     }
 }

@@ -1,7 +1,24 @@
-<form action="">
+<form action="" class="b-document-form">
+    <% var currentVersion = document.getCurrentVersion(); %>
+    <label for="">Version</label>
+    <span>
+        <% if (currentVersion.isPublished()) { %>
+        <i class="icon-circle text-success" title="Published"></i> 
+        <% } else { %>
+        <i class="icon-circle-blank text" title="Unpublished"></i> 
+        <% } %>
+        <%=currentVersion.getTitle()%>
+    </span>
+    <a href="#" class="j-choose-version-button">
+        <i class="icon-edit"></i>
+    </a>
     <label for="">Title</label>
-    <input type="text" />
+    <input type="text" value="<%=document.getTitle()%>" />
     <label for="">Description</label>
-    <textarea name="" id="" cols="30" rows="10"></textarea>
-    <input type="button" value="Сохранить"/>
+    <textarea name="" id="" cols="30" rows="10"><%-(document.getDescription() | '');%></textarea>
+
+    <input type="button" value="Save"/>
+    <% if (!currentVersion.isPublished()) { %>
+    <input type="button" class="btn-primary" value="Publish"/>
+    <% } %>
 </form>

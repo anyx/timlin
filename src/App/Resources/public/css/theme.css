@@ -7,7 +7,7 @@ label {
     cursor: default;
 }
 
-select, input[type="text"],
+input[type="text"],
 input[type="password"], input[type="datetime"], input[type="datetime-local"],
 input[type="date"], input[type="month"], input[type="time"],
 input[type="week"], input[type="number"], input[type="email"],
@@ -29,14 +29,14 @@ input[type="color"], .uneditable-input
 }
 
 /* SIZES */
-input, textarea, .uneditable-input {
+input, textarea, .uneditable-input, select {
     width: auto;
 }
 .b-editor__document-panel {
-    width: 200px;
+    width: 220px;
 }
 .b-editor__workspace {
-    margin-left: 212px;
+    margin-left: 232px;
 }
 .b-editor__workspace__width-full {
     margin-left: 12px;
