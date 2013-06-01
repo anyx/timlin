@@ -201,3 +201,49 @@ body {
     border: 1px solid #ccc;
     left: 0px;
 }
+/* DIALOG */
+.b-dialog {
+    padding: 0px;
+    -webkit-border-radius: 0px;
+       -moz-border-radius: 0px;
+            border-radius: 0px;    
+}
+
+.b-dialog__title {
+    background: #eee;
+    font-size: 20px;
+    padding: 10px 0px;
+}
+
+.b-dialog__title-text {
+    margin: 0px;
+    margin-left: 10px;
+    float: left;
+}
+.b-dialog__close-button {
+    float: right;
+    margin-right: 10px;
+    color: #333;
+}
+.b-dialog__close-button:hover {
+    text-decoration: none;
+}
+.b-dialog__content {
+    padding: 10px;
+}
+
+.b-dialog__buttons-panel {
+    margin-top: 10px;
+    background: #eee;
+    padding: 10px;
+    text-align: right;
+}
+.b-dialog__alert {
+    height: 30px;
+    padding: 3px;
+}
+
+.b-dialog__alert .alert {
+    padding: 3px 10px 4px 6px;
+    margin-bottom: 0px;
+}

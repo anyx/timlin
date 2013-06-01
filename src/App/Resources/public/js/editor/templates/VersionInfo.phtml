@@ -1,16 +1,32 @@
-<div class="b-version-info">
-    <dl>
-        <dt>Parent</dt>
-        <dd>
-            <% if (version.hasParent()) { %>
+<fieldset>
+    <legend>Version info</legend>
+    <div class="b-version-info">
+        <label for=""></label>
+        <dl>
+            <dt>Title</dt>
+            <dd>
+                <input type="text" value="<%=version.getTitle()%>"/>
+            </dd>
+            <dt>
+            Parent
+            </dt>
+            <dd>
+                <% if (version.hasParent()) { %>
                 Has parent
-            <% } else { %>
+                <% } else { %>
                 Root
-            <% } %>
-        </dd>
-        <dt>Created at</dt>
-        <dd></dd>
-        <dt>Published</dt>
-        <dd></dd>
-    </dl>
-</div>
+                <% } %>
+            </dd>
+            <dt>Created at</dt>
+            <dd><%=version.getCreatedAt().format('DD.MM.YYYY hh:mm:ss')%></dd>
+            <dt>Published</dt>
+            <dd>
+                <% if (version.isPublished()) { %>
+                Published at<%=version.getPublishedAt().format('DD.MM.YYYY hh:mm:ss')%>
+                <% } else { %>
+                Unpublished 
+                <% } %>
+            </dd>
+        </dl>
+    </div>
+</fieldset>

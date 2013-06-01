@@ -3,6 +3,7 @@
 namespace App\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\Annotation as Serializer;
 use App\Exception\DocumentException;
 
 /**
@@ -13,20 +14,24 @@ abstract class AbstractDocument
 {
     /**
      * @MongoDB\Id
+     * @Serializer\Groups({"Editor"})
      */
     protected $id;
 
     /**
      * @MongoDB\String
+     * @Serializer\Groups({"Editor"})
      */
     protected $title;
 
     /**
      * @MongoDB\String
+     * @Serializer\Groups({"Editor"})
      */
     protected $description = '';
     
     /**
+     * @Serializer\Groups({"Editor"})
      * @MongoDB\Date
      */
     protected $createdAt;
@@ -38,11 +43,14 @@ abstract class AbstractDocument
     
     /**
      * @MongoDB\EmbedMany(targetDocument="AbstractDocument")
+     * @Serializer\Groups({"Editor"})
+     * @Serializer\Type("Array")
      */
     protected $versions = array();
 
     /**
      * @MongoDB\ObjectId
+     * @Serializer\Groups({"Editor"})
      */
     protected $currentVersionId;
 

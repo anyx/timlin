@@ -1,4 +1,5 @@
 <?php
+
 namespace Rest\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @View
+     * @View(SerializerGroups={"Editor"})
      * 
      * @param \App\Document\Article $article
      */

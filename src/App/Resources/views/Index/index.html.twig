@@ -13,6 +13,10 @@
                     'dialog-content'    : '.j-dialog-content'
                 }
             },
+            //models
+            'models/DocumentVersion' : {
+                url: '{{path('rest_document_post_document_version', {'id' : ':document'})}}'
+            },
             'modules/article/Layout' : {
                 'document-panel'            : '.j-document-panel',
                 'document-panel-switcher'   : '.j-editor-switcher', 
@@ -75,7 +79,7 @@
         </div>
     </div>
     
-    <div id="j-dialog" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div id="j-dialog" class="modal hide b-dialog" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
     </div>
 </div>
 {% endblock %}

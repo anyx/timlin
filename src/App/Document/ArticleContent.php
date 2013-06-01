@@ -23,9 +23,8 @@ class ArticleContent extends AbstractContent
      * @MongoDB\ReferenceOne(targetDocument="ArticleContent")
      */
     protected $parent;
-    
+   
     /**
-     * 
      * @return \MongoId
      */
     public function getId()

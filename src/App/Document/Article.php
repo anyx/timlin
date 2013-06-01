@@ -3,6 +3,7 @@
 namespace App\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @MongoDB\Document
@@ -11,6 +12,7 @@ class Article extends AbstractDocument
 {
     /**
      * @MongoDB\EmbedMany(targetDocument="ArticleContent")
+     * @Serializer\Groups({"Editor"})
      */
     protected $versions = array();
 

@@ -1,3 +1,8 @@
+document:
+    type: rest
+    resource: Rest\Controller\DocumentController
+    name_prefix: rest_document_
+
 timeline:
     type: rest
     resource: Rest\Controller\TimelineController

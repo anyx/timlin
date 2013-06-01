@@ -3,6 +3,7 @@
 namespace App\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @MongoDB\MappedSuperclass
@@ -11,23 +12,40 @@ abstract class AbstractContent
 {
     /**
      * @MongoDB\Id
+     * @Serializer\Groups({"Editor"})
      */
     protected $id;
 
     /**
      * @MongoDB\ReferenceOne(targetDocument="AbstractDocument")
+     * @Serializer\Groups({"Editor"})
      */
     protected $parent;
 
     /**
      * @MongoDB\String
+     * @Serializer\Groups({"Editor"})
      */
     protected $title;
 
     /**
      * @MongoDB\Boolean
+     * @Serializer\Groups({"Editor"})
      */
-    public $piblished = false;
+    public $published = false;
+
+    /**
+     * @MongoDB\Date
+     * @Serializer\Groups({"Editor"})
+     * @Serializer\Type("DateTime")
+     */
+    protected $createdAt;
+    
+    /**
+     * @MongoDB\Date
+     * @Serializer\Groups({"Editor"})
+     */
+    protected $updatedAt;
 
     /**
      * 
@@ -69,13 +87,40 @@ abstract class AbstractContent
         $this->title = $title;
     }
     
-    public function isPiblished()
+    public function isPublished()
     {
-        return $this->piblished;
+        return $this->published;
     }
 
-    public function piblish()
+    public function publish()
     {
-        $this->piblished = true;
+        $this->published = true;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @MongoDB\PrePersist
+     */
+    public function OnPersistSetCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @MongoDB\PreUpdate
+     */
+    public function OnUpdateUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }
