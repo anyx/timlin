@@ -11,16 +11,16 @@ use JMS\Serializer\Annotation as Serializer;
 abstract class AbstractContent
 {
     /**
-     * @MongoDB\Id
+     * @MongoDB\Id()
      * @Serializer\Groups({"Editor"})
      */
     protected $id;
 
     /**
-     * @MongoDB\ReferenceOne(targetDocument="AbstractDocument")
      * @Serializer\Groups({"Editor"})
+     * @MongoDB\String
      */
-    protected $parent;
+    protected $parentId;
 
     /**
      * @MongoDB\String
@@ -40,7 +40,7 @@ abstract class AbstractContent
      * @Serializer\Type("DateTime")
      */
     protected $createdAt;
-    
+
     /**
      * @MongoDB\Date
      * @Serializer\Groups({"Editor"})
@@ -49,32 +49,42 @@ abstract class AbstractContent
 
     /**
      * 
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * 
      * @param \App\Document\AbstractContent $parent
      */
     public function __construct(AbstractContent $parent = null)
     {
-        $this->id = new \MongoId();
+        $this->id = (string) new \MongoId();
+
         if (!empty($parent)) {
-            $this->parent = $parent;
+            $this->parentId = $parent->getId();
         }
     }
 
     /**
      * 
-     * @return \App\Document\AbstractContent
+     * @return string
      */
-    public function getParent()
+    public function getParentId()
     {
-        return $this->parent;
+        return $this->parentId;
     }
 
     /**
      * 
-     * @param \App\Document\AbstractContent $parent
+     * @return boolean
      */
-    public function setParent(AbstractContent $parent)
+    public function hasParent()
     {
-        $this->parent = $parent;
+        return !empty($this->parentId);
     }
 
     public function getTitle()
@@ -86,7 +96,7 @@ abstract class AbstractContent
     {
         $this->title = $title;
     }
-    
+
     public function isPublished()
     {
         return $this->published;
@@ -105,6 +115,11 @@ abstract class AbstractContent
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function getPublished()
+    {
+        return $this->published;
     }
 
     /**

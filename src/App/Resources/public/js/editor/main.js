@@ -8,7 +8,6 @@ require.config({
         'marionette'    : '/bundles/app/js/vendors/backbone.marionette/lib/backbone.marionette',
         'moment'        : '/bundles/app/js/vendors/moment',
         'marion'        : '/bundles/app/js/vendors/marion',
-        'mercury'       : '/bundles/app/js/vendors/mercury/javascripts/mercury_loader',
         'text'          : '/bundles/app/js/vendors/require.js/text',
         'tpl'           : '/bundles/app/js/vendors/require.js/tpl'
     },

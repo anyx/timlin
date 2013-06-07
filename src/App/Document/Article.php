@@ -6,7 +6,9 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * @MongoDB\Document
+ * @MongoDB\Document(
+ *  repositoryClass="App\Repository\DocumentRepository"
+ * )
  */
 class Article extends AbstractDocument
 {
@@ -18,12 +20,12 @@ class Article extends AbstractDocument
 
     /**
      * 
-     * @param \App\Document\AbstractContent $content
+     * @param \App\Document\AbstractContent $parentVersion
      * @return \App\Document\ArticleContent
      */
-    public function createVersionContent(AbstractContent $content = null)
+    public function createVersionContent(AbstractContent $parentVersion = null)
     {
-        return new ArticleContent();
+        return new ArticleContent($parentVersion);
     }
 
     public function getText()

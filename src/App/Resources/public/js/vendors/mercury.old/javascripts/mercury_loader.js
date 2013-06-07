@@ -81,6 +81,7 @@ define(['module'], function(module){
         }
 
         window.loaded = false;
+
         function needLoad() {
             var result = !window.top.loaded;
             return result;
@@ -88,6 +89,11 @@ define(['module'], function(module){
 
         function markAsLoaded() {
              window.top.loaded = true;
+        }
+        
+        function markAsUndloaded() {
+             window.top.loaded = false;
+             document.mercuryLoaded = false;
         }
 
       // Because Mercury loads the document it's going to edit into an iframe we do some tweaks to the current document to
@@ -200,6 +206,9 @@ define(['module'], function(module){
             loadMercury();
         })
     })();
+    
+    
+    return 
 })
 //
 

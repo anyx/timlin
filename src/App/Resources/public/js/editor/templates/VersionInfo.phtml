@@ -1,3 +1,4 @@
+<% console.log('info', version) %>
 <fieldset>
     <legend>Version info</legend>
     <div class="b-version-info">
@@ -12,7 +13,7 @@
             </dt>
             <dd>
                 <% if (version.hasParent()) { %>
-                Has parent
+                <a href="#"><%version.getParent().getTitle()%></a>
                 <% } else { %>
                 Root
                 <% } %>

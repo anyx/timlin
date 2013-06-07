@@ -12,6 +12,7 @@ define(['marionette'], function(Marionette) {
         },
         
         showLayout: function(layout) {
+            this.getApplication().layout.close();
             this.getApplication().layout.show(layout);
         }
     });

@@ -5,9 +5,10 @@
 <script type="text/javascript">
     var require = {
         config: {
-            mercury: {
-                'saveUrl'       : '{{path('rest_article_put_articles', {'article' : article.id})}}'
-            },
+            'mercury.options' : {
+                'url'  : '{{path('rest_article_put_articles', {'article' : article.id})}}',
+                'id'   : '{{article.id}}'
+            }
         }
     };
     </script>
@@ -16,13 +17,16 @@
 
 {% block stylesheets %}
     {{parent()}}
+    <link type="text/css" rel="stylesheet" href="{{asset('/bundles/app/js/vendors/mercury/distro/mercury.bundle.css')}}" />
+    <link type="text/css" rel="stylesheet" href="{{asset('/bundles/app/js/vendors/mercury/distro/mercury_regions.bundle.css')}}" />
+
     <link type="text/css" rel="stylesheet" href="{{asset('/bundles/app/css/article-editor.css')}}" />
 {% endblock %}
     
 {% block body %}
 <div class="b-article-editor-area">
     <div class="b-article-container span9">
-        <div id="j-article-content" class="b-article-content" data-mercury="full">
+        <div id="j-article-content" class="b-article-content" data-mercury="html">
         {{article.text | raw}}
         </div>
     </div>

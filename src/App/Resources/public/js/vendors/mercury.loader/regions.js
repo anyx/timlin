@@ -1,0 +1,8 @@
+define(
+    [
+        './region.html'
+    ],
+    function() {
+    
+    }
+);

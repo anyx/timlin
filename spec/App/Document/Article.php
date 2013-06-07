@@ -26,4 +26,12 @@ class Article extends ObjectBehavior
         $this->createVersion();
         $this->getCountVersions()->shouldReturn(2);
     }
+    
+    function it_should_can_create_child_versions()
+    {
+        $currentVerision = $this->getCurrentVersion();
+        $childVersion = $this->createChildVersion($currentVerision->getId());
+        
+        $childVersion->getParent()->getId()->shouldReturn($currentVerision->getId());
+    }
 }

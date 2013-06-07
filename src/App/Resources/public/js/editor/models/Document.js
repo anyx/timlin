@@ -20,16 +20,19 @@ define(['backbone', 'models/DocumentVersion'], function(Backbone, DocumentVersio
             return this.get('description');
         },
 
-        getCurrentVersion: function() {
-            var currentVersion = _.find(this.getVersions(), function(version) {
-                return version.id == this.get('current_version_id');
+        getVersion: function(versionId) {
+            var version = _.find(this.getVersions(), function(version) {
+                return version.id == versionId;
             }, this);
-
-            if (!currentVersion) {
-                throw new Error('Current version not found');
+            
+            if (!version) {
+                throw new Error('Version with id '+versionId+' not found');
             }
+            return version;
+        },
 
-            return currentVersion;
+        getCurrentVersion: function() {
+            return this.getVersion(this.get('current_version_id'));
         },
 
         createVersion: function(versionData) {

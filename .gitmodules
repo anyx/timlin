@@ -1,0 +1,3 @@
+[submodule "src/App/Resources/public/js/vendors/mercury"]
+	path = src/App/Resources/public/js/vendors/mercury
+	url = git://github.com/jejacks0n/mercury.git

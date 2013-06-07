@@ -2,7 +2,7 @@
     
     <form action="" class="b-version-chooser">
         <label for="">Current version</label>
-        <select name="version">
+        <select name="version" class="j-version-select">
             <% _.each(document.getVersions(), function(version) { %>
             <option value="<%=version.id%>" <% if(document.getCurrentVersionId() == version.id) {%> selected <%}%> >
                     <%=version.getTitle()%>

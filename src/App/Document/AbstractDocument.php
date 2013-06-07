@@ -29,18 +29,18 @@ abstract class AbstractDocument
      * @Serializer\Groups({"Editor"})
      */
     protected $description = '';
-    
+
     /**
      * @Serializer\Groups({"Editor"})
      * @MongoDB\Date
      */
     protected $createdAt;
-    
+
     /**
      * @var type 
      */
     protected $owner;
-    
+
     /**
      * @MongoDB\EmbedMany(targetDocument="AbstractDocument")
      * @Serializer\Groups({"Editor"})
@@ -55,9 +55,9 @@ abstract class AbstractDocument
     protected $currentVersionId;
 
     /**
-     * @param \App\Document\AbstractContent $name Description
+     * @param \App\Document\AbstractContent $parentVersion Description
      */
-    abstract function createVersionContent(AbstractContent $content = null);
+    abstract function createVersionContent(AbstractContent $parentVersion = null);
 
     /**
      * 
@@ -67,10 +67,8 @@ abstract class AbstractDocument
     {
         $this->title = $title;
 
-        $content = $this->createVersionContent();
-        $content->setTitle('1');
-        $this->addVersion($content);
-        $this->setCurrentVersionId($content->getId());
+        $version = $this->createVersion();
+        $this->setCurrentVersionId($version->getId());
     }
 
     public function getId()
@@ -135,23 +133,23 @@ abstract class AbstractDocument
     public function getCurrentVersion()
     {
         if (empty($this->currentVersionId)) {
-            throw new DocumentException('Current version not found');
+            return null;
         }
-        
-        foreach($this->getVersions() as $version) {
+
+        foreach ($this->getVersions() as $version) {
             if ($version->getId() == $this->currentVersionId) {
                 return $version;
             }
         }
-        
+
         throw new DocumentException('Current version not found by id');
     }
 
     /**
      * 
-     * @param \MongoId $versionid
+     * @param string $versionid
      */
-    public function setCurrentVersionId(\MongoId $versionid)
+    public function setCurrentVersionId($versionid)
     {
         $this->currentVersionId = $versionid;
     }
@@ -165,13 +163,35 @@ abstract class AbstractDocument
         return count($this->getVersions());
     }
 
-    public function createVersion()
+    /**
+     * @return \App\Document\AbstractContent
+     */
+    public function createVersion(AbstractContent $parentVersion = null)
     {
-        $version = $this->createVersionContent(
-            $this->getCurrentVersion()
-        );
-        $version->setTitle($this->getCountVersions());
+        if (empty($parentVersion)) {
+            $parentVersion = $this->getCurrentVersion();
+        }
+        $version = $this->createVersionContent($parentVersion);
+        $version->setTitle('Version ' . ($this->getCountVersions() + 1));
         $this->addVersion($version);
+
+        return $version;
+    }
+
+    /**
+     * 
+     * @param string $versionId
+     * @return \App\Document\AbstractContent
+     * @throws \LogicException
+     */
+    public function getVersion($versionId)
+    {
+        foreach ($this->getVersions() as $version) {
+            if ($versionId == $version->getId()) {
+                return $version;
+            }
+        }
+        throw new \LogicException('Version "' . $versionId . '" not found');
     }
 
     /**

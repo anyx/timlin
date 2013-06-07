@@ -17,7 +17,8 @@ define(
         versionView : null,
         
         events: {
-            'click .j-create-version-btn' : 'onClickCreateVersion'
+            'click .j-create-version-btn'   : 'onClickCreateVersion',
+            'change .j-version-select'      : 'onSelectVersion'
         },
         
         serializeData: function() {
@@ -57,8 +58,14 @@ define(
                     dialog.showSuccess('Version succesfully saved');
                 })
                 .error(function(){
-                    dialog.showSuccess('Version was not saved');
+                    console.log(arguments);
+                    dialog.showError('Version was not saved');
                 })
+        },
+        
+        onSelectVersion: function(event) {
+            var versionId = $(event.target).find(':selected').val();
+            this.showVersionInfo(this.model.getVersion(versionId));
         }
     });
 })

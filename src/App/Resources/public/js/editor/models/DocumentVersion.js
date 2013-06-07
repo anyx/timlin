@@ -11,7 +11,7 @@ define(['backbone', 'module'], function(Backbone, module) {
         
         initialize: function(options) {
             this.setDocument(options.document);
-            delete options.document;
+            this.unset('document');
         },
         
         getId: function() {
@@ -32,6 +32,13 @@ define(['backbone', 'module'], function(Backbone, module) {
         
         hasParent: function() {
             return this.get('parent_id');
+        },
+        
+        getParent: function() {
+            if (!this.get('parent_id')) {
+                throw new Error('Version don\'t have parent');
+            }
+            return this.getDocument().getVersion(this.get('parent_id'));
         },
         
         setDocument: function(document) {
