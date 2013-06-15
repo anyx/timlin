@@ -11,6 +11,9 @@ define(['backbone', 'module'], function(Backbone, module) {
         
         initialize: function(options) {
             this.setDocument(options.document);
+            if (this.id) {
+                this.set('version_id', this.id);
+            }
             this.unset('document');
         },
         

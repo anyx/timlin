@@ -47,6 +47,11 @@ define(['backbone', 'models/DocumentVersion'], function(Backbone, DocumentVersio
             });
         },
 
+        clearVersions: function() {
+            this.versions = null;
+            return this;
+        },
+
         getCurrentVersionId: function() {
             return this.get('current_version_id');
         }

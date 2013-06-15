@@ -38,9 +38,7 @@ class DocumentController extends Controller
             $document->createVersion($document->getVersion($parentVersionId));
             $this->get('dm')->flush();
         } catch(\Exception $exception) {
-            var_dump($exception);
-            die();
-            throw new HttpException(500, 'Can\'t create version');
+            throw new HttpException(500, 'Can\'t create version', $exception);
         }
         
         return $document;
@@ -50,8 +48,24 @@ class DocumentController extends Controller
      * @View
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
-    public function cpostAction(Request $request)
+    public function putVersionAction($id, Request $request)
     {
+        /* @var $document \App\Document\AbstractDocument  */
+        $document = $this->get('dm')->getRepository('App\Document\Article')->findUserDocumentById($this->getUser(), $id);
+        if (empty($document)) {
+            throw $this->createNotFoundException('Document not found');
+        }
         
+        $versionId = $request->get('version_id');
+        
+        try {
+            $version = $document->getVersion($versionId);
+            $version->setTitle($request->get('title'));
+            $this->get('dm')->flush();
+        } catch(\Exception $exception) {
+            throw new HttpException(500, 'Can\'t save version', $exception);
+        }
+        
+        return $document;
     }
 }
