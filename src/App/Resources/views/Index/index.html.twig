@@ -39,12 +39,13 @@
         }
     };
     </script>
-    <script data-main="{{asset('/bundles/app/js/editor/main.js')}}" src="{{asset('/bundles/app/js/vendors/require.js/require.js')}}"></script>
+    <script data-main="{{asset('/bundles/app/js/editor/main.js')}}" src="{{asset('/bundles/app/js/vendors/requirejs/require.js')}}"></script>
 {% endblock %}
 
 {% block stylesheets %}
     {{parent()}}
-    <link rel="stylesheet" href="{{ asset('bundles/app/js/vendors/jquery-ui/css/pepper-grinder/jquery-ui-1.10.1.custom.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/js/vendors/jquery-ui/themes/pepper-grinder/jquery-ui.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/js/vendors/jquery-ui/themes/pepper-grinder/jquery.ui.theme.css') }}" />
 {% endblock %}
     
 {% block content %}

@@ -1,8 +1,8 @@
-define(['marion/Application', 'marion/EntityManager', 'views/Dialog'], function(Application, EntityManager, DialogView) {
+define(['marion', 'views/Dialog'], function(Marion, DialogView) {
 
-    return Application.extend({
+    return Marion.Application.extend({
 
-        entityManager: new EntityManager(),
+        entityManager: new Marion.EntityManager(),
 
         getEntityManager: function() {
             return this.entityManager;

@@ -6,4 +6,5 @@ web/bundles/*
 web/css/*
 web/js/*
 vendor/*
+src/App/Resources/public/js/vendors
 /nbproject

@@ -1,6 +1,6 @@
-define(['marion/Controller', 'module'], function(Controller, module) {
+define(['marion', 'module'], function(Marion, module) {
 
-    return Controller.extend({
+    return Marion.Controller.extend({
         
         routes : {
             'article-edit'  : {

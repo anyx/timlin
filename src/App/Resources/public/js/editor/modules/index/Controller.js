@@ -1,6 +1,6 @@
-define(['marion/Controller'], function(Controller) {
+define(['marion'], function(Marion) {
 
-    return Controller.extend({
+    return Marion.Controller.extend({
         
         routes : {
             'index' : {

@@ -1,6 +1,6 @@
-define(['marion/Controller', './models/Timeline'], function(Controller, Timeline) {
+define(['marion', './models/Timeline'], function(Marion, Timeline) {
 
-    return Controller.extend({
+    return Marion.Controller.extend({
         
         routes : {
             'timeline-edit'  : {

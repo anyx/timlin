@@ -1,0 +1,24 @@
+{
+  "name": "reliter",
+  "version": "0.0.1",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "jquery": "2.0.0",
+    "underscore": "*",
+    "backbone": "1.0.0",
+    "marionette": "1.0.3",
+    "requirejs": "2.1.6",
+    "requirejs-tpl": "*",
+    "marion": "git://github.com/anyx/marion",
+    "mercury": "git://github.com/anyx/mercury.git#v2.0.0-alpha",
+    "moment": "git://github.com/timrwood/moment#2.0.0",
+    "jquery-ui": "1.10.3",
+    "bootstrap": "2.3.2"
+  },
+  "devDependencies": {
+    "jasmine": "*"
+  }
+}

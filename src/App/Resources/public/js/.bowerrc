@@ -1,0 +1,5 @@
+{
+  "directory": "vendors",
+  "json": "bower.json",
+  "shorthand_resolver": "git://github.com/{{{ organization }}}/{{{ package }}}.git"
+}
