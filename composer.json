@@ -3,6 +3,7 @@
     "description": "",
     "keywords": ["Symfony2", "Symfony2 Distribution"],
     "license":     "MIT",
+    "type": "project",
     "authors": [
         {
             "name":     "anyx",
@@ -10,29 +11,23 @@
         }
     ],
     "require": {
-        "php":                      ">=5.3.3",
-        "symfony/symfony": "2.2.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.2.*",
-        "symfony/monolog-bundle": "2.2.*",
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.3.*",
+        "symfony/assetic-bundle": "2.3.*",
+        "twig/extensions": "1.0.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
-        "twig/extensions": "1.0.*",
-        "sensio/distribution-bundle": "2.2.*",
-        "sensio/framework-extra-bundle": "2.2.*",
-        "sensio/generator-bundle": "2.2.*",
-        "jms/security-extra-bundle": "1.4.*",
-        "jms/di-extra-bundle": "1.3.*",
-        "nelmio/alice":             "*",
-        "fzaninotto/faker":         "*",
-        "mopa/bootstrap-bundle": "dev-master",
-        "friendsofsymfony/rest-bundle": "dev-remove_conflict",
-        "jms/serializer-bundle": "dev-master"
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "friendsofsymfony/rest-bundle": "0.12.0",
+        "jms/serializer-bundle": "dev-master",
+        "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {
-        "phpspec/phpspec2":                   "dev-develop",
-        "symfony/swiftmailer-bundle":         "2.2.*",
-        "twig/twig":                          ">=1.11.0,<2.0"
+        "phpspec/phpspec":                   "2.0.*@dev"
     },
     "suggest": {
         "symfony/form":                      "To take advantage of the Rad Form Manager",
@@ -49,12 +44,14 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
@@ -64,6 +61,12 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-        "symfony-assets-install": "symlink"
+        "symfony-assets-install": "symlink",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
     }
 }
