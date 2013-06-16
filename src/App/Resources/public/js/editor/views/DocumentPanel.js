@@ -21,6 +21,10 @@ define(
         },
 
         initialize: function() {
+            var _this = this;
+            this.model.on('change', function() {
+                _this.render();
+            });
         },
         
         serializeData: function() {

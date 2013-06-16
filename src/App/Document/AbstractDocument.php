@@ -196,6 +196,34 @@ abstract class AbstractDocument
 
     /**
      * 
+     * @param string $versionId
+     * @return boolean
+     * @throws \LogicException
+     */
+    public function removeVersion($versionId)
+    {
+        if ($versionId == $this->currentVersionId) {
+            throw new \LogicException('Can\'t remove current version "'.$versionId.'"');
+        }
+        
+        $foundVersion = $this->getVersion($versionId);
+        
+        if (!$foundVersion->hasParent()) {
+            throw new \LogicException('Can not remove root version');
+        }
+        
+        foreach ($this->versions as $key => $version) {
+            if ($version->getId() == $foundVersion->getId()) {
+                unset($this->versions[$key]);
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    /**
+     * 
      * @param \App\Document\AbstractContent $content
      */
     protected function addVersion(AbstractContent $content)

@@ -23,6 +23,10 @@
             <dd><%=version.getCreatedAt().format('DD.MM.YYYY hh:mm:ss')%></dd>
             <dt>Published</dt>
             <dd>
+                <label for="j-version-published-checkbox">
+                <input type="checkbox" class="j-version-published" id="j-version-published-checkbox" <% if (version.isPublished()) { print("checked");} %> />
+                    public
+                </label>
                 <% if (version.isPublished()) { %>
                 Published at<%=version.getPublishedAt().format('DD.MM.YYYY hh:mm:ss')%>
                 <% } else { %>

@@ -9,6 +9,10 @@ define(['backbone', 'module'], function(Backbone, module) {
             return this._url.split(':document').join(this.getDocumentId())
         },
         
+        getChangeVersionUrl: function() {
+            return this.url() + '/change';
+        },
+
         initialize: function(options) {
             this.setDocument(options.document);
             if (this.id) {
@@ -50,6 +54,10 @@ define(['backbone', 'module'], function(Backbone, module) {
         
         getDocument: function() {
             return this.document;
+        },
+        
+        isCurrentDocumentVersion: function() {
+            return this.getDocument().getCurrentVersion().id == this.id;
         },
         
         getDocumentId: function() {

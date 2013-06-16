@@ -7,7 +7,14 @@ define(['marionette', 'module', 'tpl!./../templates/Workspace.phtml'], function(
 
         previewUrl: module.config().previewUrl,
         
-        onShow: function() {
+        initialize: function() {
+            var _this = this;
+            this.model.on('change:current_version_id', function(){
+                _this.render();
+            });
+        },
+        
+        onRender: function() {
             var contentIframe = this.$el.find('iframe');
             contentIframe.attr('src', this.getPreviewUrl(this.model.id));
             

@@ -54,6 +54,34 @@ define(['backbone', 'models/DocumentVersion'], function(Backbone, DocumentVersio
 
         getCurrentVersionId: function() {
             return this.get('current_version_id');
+        },
+        
+        requestChangeVersion: function(versionId) {
+            var document = this;
+
+            var version = document.getVersion(versionId);
+
+            return $.ajax(
+                version.getChangeVersionUrl(),
+                {
+                    type: 'PUT',
+                    dataType: 'json',
+                    data: {
+                        'new_current_version': versionId
+                    },
+                    success: function(data) {
+                        document
+                        .clearVersions()
+                        .set(data);
+                    }
+                }
+            );
+        },
+
+        toJSON: function() {
+            var attrs = _.clone(this.attributes);
+            delete attrs['versions'];
+            return JSON.stringify(attrs);
         }
     });
 });

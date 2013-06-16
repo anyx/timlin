@@ -4,7 +4,8 @@ define(['marionette', 'tpl!templates/VersionInfo.phtml'], function(Marionette, t
         
         events : {
             'keyup .j-version-title': 'onKeyUpSetVersionTitle',
-            'click .j-parent-version-link': 'onClickShowParentVersions'
+            'click .j-parent-version-link': 'onClickShowParentVersions',
+            'change .j-version-published': 'onChangeVersionPublicity'
         },
         
         serializeData: function() {
@@ -21,6 +22,11 @@ define(['marionette', 'tpl!templates/VersionInfo.phtml'], function(Marionette, t
         onClickShowParentVersions: function(event) {
             this.trigger('version:select', $(event.currentTarget).data('parent-id'));
             return false;
+        },
+        
+        onChangeVersionPublicity: function(event) {
+            this.model.set('published', $(event.currentTarget).is(':checked'));
+            this.trigger('version:change', this.model);
         }
     });
 })

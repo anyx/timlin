@@ -16,15 +16,23 @@ define(
         
         versionView : null,
         
+        lastVersionId: null,
+        
         events: {
             'click .j-create-version-btn'   : 'onClickCreateVersion',
             'click .j-save-version-btn'     : 'onClickSaveVersion',
+            'click .j-switch-version-btn'   : 'onClickSwitchVersion',
             'change .j-version-select'      : 'onSelectVersion'
+        },
+        
+        initialize: function() {
+            this.lastVersionId = null;
         },
         
         serializeData: function() {
             return {
-                document : this.model
+                document : this.model,
+                lastVersionId: this.lastVersionId
             };
         },
         
@@ -37,7 +45,8 @@ define(
         },
         
         onRender: function() {
-            this.showVersionInfo(this.model.getCurrentVersion());
+            var selectedVersionId = !_.isNull(this.lastVersionId) ? this.lastVersionId : this.model.getCurrentVersionId();
+            this.showVersionInfo(this.model.getVersion(selectedVersionId));
         },
         
         showVersionInfo: function(version) {
@@ -51,18 +60,25 @@ define(
             }, this);
             
             this.versionView.on('version:select', function(versionId) {
-                var r = this.$el.find('.j-version-select')
+                this.$el.find('.j-version-select')
                     .val(versionId)
                     .change();
             }, this);
 
             this.setSaveDisabled(true);
+            this.setChangeDisabled(
+                this.model.getVersion(this.getSelectedVersionId()).isCurrentDocumentVersion()
+            );
         },
         
         setSaveDisabled: function(disabled) {
             this.$el.find('.j-save-version-btn').attr('disabled', disabled ? 'disabled': null);
         },
-        
+
+        setChangeDisabled: function(disabled) {
+            this.$el.find('.j-switch-version-btn').attr('disabled', disabled ? 'disabled': null);
+        },
+
         onClickCreateVersion: function() {
             var _this = this;
             
@@ -70,7 +86,7 @@ define(
             dialog.showInfo('Saving...');
             dialog.disableClosing();
 
-            var childVersion = this.model.createChildVersion(this.model.getCurrentVersion());
+            var childVersion = this.model.createChildVersion(this.model.getVersion(this.getSelectedVersionId()));
             childVersion
                 .save()
                 .success(function(updatedDocument){
@@ -79,9 +95,11 @@ define(
                         .set(updatedDocument);
                     _this.render();
                     dialog.showSuccess('Version succesfully saved');
+                    dialog.enableClosing();
                 })
                 .error(function(){
                     dialog.showError('Version was not saved');
+                    dialog.enableClosing();
                 })
         },
         
@@ -92,6 +110,7 @@ define(
             dialog.showInfo('Saving...');
             dialog.disableClosing();
             
+            this.lastVersionId = this.getSelectedVersionId();
             this.model.getVersion(this.getSelectedVersionId())
                 .save()
                 .success(function(updatedDocument){
@@ -100,9 +119,23 @@ define(
                         .set(updatedDocument);
                     _this.render();
                     dialog.showSuccess('Version succesfully saved');
+                    dialog.enableClosing();
                 })
                 .error(function(){
                     dialog.showError('Version was not saved');
+                    dialog.enableClosing();
+                })
+        },
+        
+        onClickSwitchVersion: function() {
+            var _this = this;
+            this.model
+                .requestChangeVersion(this.getSelectedVersionId())
+                .success(function(){
+                    _this.getDialog().hide();
+                })
+                .error(function(){
+                    _this.getDialog().showError('Version was not changed');
                 })
         },
         

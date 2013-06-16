@@ -3,7 +3,7 @@ require.config({
         'jquery'        : '/bundles/app/js/vendors/jquery/jquery.min',
         'jquery.ui'     : '/bundles/app/js/vendors/jquery-ui/ui/minified/jquery-ui.min',
         'underscore'    : '/bundles/app/js/vendors/underscore/underscore',
-        'backbone'      : '/bundles/app/js/vendors/backbone/backbone-min',
+        'backbone'      : '/bundles/app/js/vendors/backbone/backbone',
         'bootstrap'     : '/bundles/app/js/vendors/bootstrap/docs/assets/js/bootstrap.min',
         'marionette'    : '/bundles/app/js/vendors/marionette/lib/backbone.marionette',
         'moment'        : '/bundles/app/js/vendors/moment/min',

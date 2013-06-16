@@ -30,7 +30,7 @@ define(['marionette', 'tpl!templates/Dialog.phtml'], function(Marionette, templa
         },
         
         enableClosing: function() {
-            this.closingEnabled = false;
+            this.closingEnabled = true;
         },
 
         canClose: function() {
