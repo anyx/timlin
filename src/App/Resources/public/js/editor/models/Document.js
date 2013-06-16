@@ -81,7 +81,7 @@ define(['backbone', 'models/DocumentVersion'], function(Backbone, DocumentVersio
         toJSON: function() {
             var attrs = _.clone(this.attributes);
             delete attrs['versions'];
-            return JSON.stringify(attrs);
+            return attrs;
         }
     });
 });

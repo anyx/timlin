@@ -32,9 +32,9 @@ class ArticleContent extends AbstractContent
         return $this->content;
     }
 
-    public function getText()
+    public function copyContent(AbstractContent $parent)
     {
-        return $this->text;
+        $this->setContent($parent->getContent());
     }
 
     public function setText($text)
@@ -42,10 +42,15 @@ class ArticleContent extends AbstractContent
         $this->text = $text;
     }
 
+    public function getText()
+    {
+        return $this->text;
+    }
+
     public function setContent($content)
     {
         $this->content = $content;
-        if (array_key_exists('value', $content)) {
+        if (is_array($content) && array_key_exists('value', $content)) {
             $this->setText($content['value']);
         }
     }

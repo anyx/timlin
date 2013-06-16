@@ -56,6 +56,8 @@ abstract class AbstractContent
         return $this->id;
     }
 
+    abstract public function copyContent(AbstractContent $parent);
+
     /**
      * 
      * @param \App\Document\AbstractContent $parent
@@ -66,6 +68,7 @@ abstract class AbstractContent
 
         if (!empty($parent)) {
             $this->parentId = $parent->getId();
+            $this->copyContent($parent);
         }
     }
 

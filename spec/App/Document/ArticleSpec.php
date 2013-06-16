@@ -2,9 +2,10 @@
 
 namespace spec\App\Document;
 
-use PHPSpec2\ObjectBehavior;
+use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
 
-class Article extends ObjectBehavior
+class ArticleSpec extends ObjectBehavior
 {
     function let()
     {
@@ -30,8 +31,8 @@ class Article extends ObjectBehavior
     function it_should_can_create_child_versions()
     {
         $currentVerision = $this->getCurrentVersion();
-        $childVersion = $this->createChildVersion($currentVerision->getId());
+        $childVersion = $this->createVersion($currentVerision);
         
-        $childVersion->getParent()->getId()->shouldReturn($currentVerision->getId());
+        $childVersion->getParentId()->shouldReturn($currentVerision->getId());
     }
 }
