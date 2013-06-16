@@ -12,7 +12,9 @@
             </dt>
             <dd>
                 <% if (version.hasParent()) { %>
-                <a href="#"><%version.getParent().getTitle()%></a>
+                <a href="#" data-parent-id="<%=version.getParent().getId()%>" class="j-parent-version-link">
+                    <%=version.getParent().getTitle()%>
+                </a>
                 <% } else { %>
                 Root
                 <% } %>

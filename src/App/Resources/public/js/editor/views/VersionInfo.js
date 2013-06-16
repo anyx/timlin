@@ -3,7 +3,8 @@ define(['marionette', 'tpl!templates/VersionInfo.phtml'], function(Marionette, t
         template: template,
         
         events : {
-            'keyup .j-version-title': "onKeyUpSetVersionTitle"
+            'keyup .j-version-title': 'onKeyUpSetVersionTitle',
+            'click .j-parent-version-link': 'onClickShowParentVersions'
         },
         
         serializeData: function() {
@@ -15,6 +16,11 @@ define(['marionette', 'tpl!templates/VersionInfo.phtml'], function(Marionette, t
         onKeyUpSetVersionTitle: function(event) {
             this.model.set('title', $(event.currentTarget).val());
             this.trigger('version:change', this.model);
+        },
+        
+        onClickShowParentVersions: function(event) {
+            this.trigger('version:select', $(event.currentTarget).data('parent-id'));
+            return false;
         }
     });
 })

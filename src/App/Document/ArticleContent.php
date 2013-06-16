@@ -20,11 +20,6 @@ class ArticleContent extends AbstractContent
     protected $content;
 
     /**
-     * @MongoDB\String
-     */
-    protected $parentId;
-   
-    /**
      * @return \MongoId
      */
     public function getId()

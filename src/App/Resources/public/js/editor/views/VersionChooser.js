@@ -46,10 +46,16 @@ define(
                 model   : version
             }).render();
             
-            this.versionView.on('version:change', function(version) {
+            this.versionView.on('version:change', function() {
                 this.setSaveDisabled(false);
             }, this);
             
+            this.versionView.on('version:select', function(versionId) {
+                var r = this.$el.find('.j-version-select')
+                    .val(versionId)
+                    .change();
+            }, this);
+
             this.setSaveDisabled(true);
         },
         
