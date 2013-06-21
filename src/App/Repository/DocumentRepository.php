@@ -13,4 +13,31 @@ class DocumentRepository extends BaseRepository
     {
         return $this->findOneById($documentId);
     }
+    
+    /**
+     * 
+     * @param integer $limit
+     * @return \Doctrine\ODM\MongoDB\LoggableCursor
+     */
+    public function getPopularDocuments($limit = 10)
+    {
+        return $this->findBy(
+            array(
+                //'published' => true
+            ), 
+            array(
+                
+            ),
+            $limit
+        );
+    }
+    
+    public function getPublicDocument($id)
+    {
+        return $this->findOneBy(
+            array(
+                'id'    => $id
+            )
+        );
+    }
 }

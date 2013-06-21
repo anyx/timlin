@@ -1,0 +1,13 @@
+{% extends 'App::viewer_layout.html.twig' %}
+
+{% block javascripts %}
+    {{parent()}}
+{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+{% endblock %}
+
+{% block content %}
+{{dump(document)}}
+{% endblock %}

@@ -1,11 +1,16 @@
-app:
-    resource: "@App/Resources/config/routing.yml"
-
 rest:
     type: rest
     resource: "@Rest/Resources/config/routing.yml"
     prefix:   rest
 
+editor:
+    resource: "@App/Controller/EditorController.php"
+    type:     annotation
+
+viewer:
+    resource: "@App/Controller/ViewerController.php"
+    type:     annotation
+    
 article:
     resource: "@App/Controller/ArticleController.php"
     type:     annotation
