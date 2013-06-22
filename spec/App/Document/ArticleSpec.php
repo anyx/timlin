@@ -30,9 +30,25 @@ class ArticleSpec extends ObjectBehavior
     
     function it_should_can_create_child_versions()
     {
-        $currentVerision = $this->getCurrentVersion();
-        $childVersion = $this->createVersion($currentVerision);
+        $currentVersion = $this->getCurrentVersion();
+        $childVersion = $this->createVersion($currentVersion);
         
-        $childVersion->getParentId()->shouldReturn($currentVerision->getId());
+        $childVersion->getParentId()->shouldReturn($currentVersion->getId());
+    }
+    
+    function it_should_can_create_equal_versions()
+    {
+        $contentKey = \App\Document\ArticleContent::CONTENT_TEXT_KEY;
+        $content = array(
+            'someKey'   => 'val',
+            $contentKey => 'TextVal'
+        );
+        $currentVersion = $this->getCurrentVersion();
+        $currentVersion->setContent($content);
+        
+        $currentVersion->getText()->shouldReturn($content[$contentKey]);
+        
+        $childVersion = $this->createVersion($currentVersion);
+        $childVersion->getText()->shouldReturn($content[$contentKey]);
     }
 }

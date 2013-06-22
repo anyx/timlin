@@ -9,6 +9,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  */
 class ArticleContent extends AbstractContent
 {
+    const CONTENT_TEXT_KEY = 'value';
+    
     /**
      * @MongoDB\String
      */
@@ -34,7 +36,13 @@ class ArticleContent extends AbstractContent
 
     public function copyContent(AbstractContent $parent)
     {
-        $this->setContent($parent->getContent());
+        $this->setText('');
+        $content = $parent->getContent();
+        if (!empty($content)) {
+            $this->setContent($parent->getContent());
+        } else {
+            $this->setText($parent->getText());
+        }
     }
 
     public function setText($text)
@@ -50,8 +58,8 @@ class ArticleContent extends AbstractContent
     public function setContent($content)
     {
         $this->content = $content;
-        if (is_array($content) && array_key_exists('value', $content)) {
-            $this->setText($content['value']);
+        if (is_array($content) && array_key_exists(self::CONTENT_TEXT_KEY, $content)) {
+            $this->setText($content[self::CONTENT_TEXT_KEY]);
         }
     }
 }

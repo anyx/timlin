@@ -1,4 +1,4 @@
-{% extends 'App::layout.html.twig' %}
+{% extends 'App::editor_layout.html.twig' %}
 
 {% block javascripts %}
 {{parent()}}
@@ -6,7 +6,7 @@
     var require = {
         config: {
             'mercury.options' : {
-                'url'  : '{{path('rest_article_put_articles', {'article' : article.id})}}',
+                'url'  : '{{path('rest_article_put_article_content', {'article' : article.id})}}',
                 'id'   : '{{article.id}}'
             }
         }

@@ -55,6 +55,13 @@ abstract class AbstractDocument
     protected $currentVersionId;
 
     /**
+     * @MongoDB\Boolean
+     * @Serializer\Type("boolean")
+     * @Serializer\Groups({"Editor"})
+     */
+    protected $published = false;
+
+    /**
      * @param \App\Document\AbstractContent $parentVersion Description
      */
     abstract function createVersionContent(AbstractContent $parentVersion = null);
@@ -123,6 +130,16 @@ abstract class AbstractDocument
     public function getVersions()
     {
         return $this->versions;
+    }
+
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    public function setPublished($published)
+    {
+        $this->published = $published;
     }
 
     /**

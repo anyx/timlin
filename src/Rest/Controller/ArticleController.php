@@ -10,12 +10,19 @@ use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 
 use App\Document\Article;
+use Rest\Form\Type\DocumentType;
 
 /**
  * @RouteResource("Article")
  */
 class ArticleController extends Controller
 {
+    private $documentFields = array(
+        'title',
+        'description',
+        'published'
+    );
+    
     public function cgetAction()
     {
         
@@ -32,7 +39,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @View
+     * @View(SerializerGroups={"Editor"})
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
     public function cpostAction(Request $request)
@@ -54,7 +61,7 @@ class ArticleController extends Controller
 
     /**
      * 
-     * @View
+     * @View(SerializerGroups={"Editor"})
      * 
      * @param \Rest\Controller\Article $article
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -62,6 +69,28 @@ class ArticleController extends Controller
      * @throws HttpException
      */
     public function cputAction(Article $article, Request $request)
+    {
+        $documentForm = $this->createForm(new DocumentType(), $article);
+        
+        $documentForm->submit($this->getDocumentData($request));
+
+        if ($documentForm->isValid()) {
+            $this->get('dm')->flush();
+            return $article;
+        } else {
+            throw new HttpException(400, 'Can\'t save document');
+        }
+    }
+    
+    /**
+     * @View()
+     * 
+     * @param \App\Document\Article $article
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \App\Document\Article
+     * @throws HttpException
+     */
+    public function putContentAction(Article $article, Request $request)
     {
         $fullContent = $request->get('content');
         
@@ -79,5 +108,15 @@ class ArticleController extends Controller
         $dm->flush();
         
         return $article;
+    }
+    
+    /**
+     * 
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return array
+     */
+    protected function getDocumentData(Request $request)
+    {
+        return array_intersect_key($request->request->all(), array_flip($this->documentFields));
     }
 }

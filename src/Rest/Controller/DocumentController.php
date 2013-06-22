@@ -40,8 +40,6 @@ class DocumentController extends Controller
             return $document;
             
         } catch (\Exception $exception) {
-            var_dump($exception);
-            die();
             throw new HttpException(500, 'Can\'t change version', $exception);
         }
         
