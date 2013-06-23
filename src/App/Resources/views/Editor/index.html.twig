@@ -15,7 +15,7 @@
             },
             //models
             'models/DocumentVersion' : {
-                url: '{{path('rest_document_post_document_version', {'id' : ':document'})}}'
+                url: '{{path('rest_document_put_document_version', {'documentId' : ':document', 'versionId' : ':version'})}}'
             },
             'modules/article/Layout' : {
                 'document-panel'            : '.j-document-panel',

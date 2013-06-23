@@ -22,6 +22,7 @@ define(
             'click .j-create-version-btn'   : 'onClickCreateVersion',
             'click .j-save-version-btn'     : 'onClickSaveVersion',
             'click .j-switch-version-btn'   : 'onClickSwitchVersion',
+            'click .j-remove-version-btn'   : 'onClickRemoveVersion',
             'change .j-version-select'      : 'onSelectVersion'
         },
         
@@ -66,17 +67,26 @@ define(
             }, this);
 
             this.setSaveDisabled(true);
-            this.setChangeDisabled(
-                this.model.getVersion(this.getSelectedVersionId()).isCurrentDocumentVersion()
-            );
+            
+            var isCurrentVersion = this.model.getVersion(this.getSelectedVersionId()).isCurrentDocumentVersion();
+            this.setChangeDisabled(isCurrentVersion);
+            this.setDeleteDispabed(isCurrentVersion)
         },
         
         setSaveDisabled: function(disabled) {
-            this.$el.find('.j-save-version-btn').attr('disabled', disabled ? 'disabled': null);
+            this.setButtonDisabled('.j-save-version-btn', disabled);
         },
 
         setChangeDisabled: function(disabled) {
-            this.$el.find('.j-switch-version-btn').attr('disabled', disabled ? 'disabled': null);
+            this.setButtonDisabled('.j-switch-version-btn', disabled);
+        },
+
+        setDeleteDispabed: function(disabled) {
+            this.setButtonDisabled('.j-remove-version-btn', disabled);
+        },
+        
+        setButtonDisabled: function(selector, disabled) {
+            this.$el.find(selector).attr('disabled', disabled ? 'disabled': null);
         },
 
         onClickCreateVersion: function() {
@@ -136,6 +146,28 @@ define(
                 })
                 .error(function(){
                     _this.getDialog().showError('Version was not changed');
+                })
+        },
+        
+        onClickRemoveVersion: function() {
+            var _this = this;
+            var dialog = this.getDialog();
+            dialog.showInfo('Remove version...');
+            dialog.disableClosing();
+            
+            this.model.getVersion(this.getSelectedVersionId())
+                .destroy()
+                .success(function(updatedDocument){
+                    _this.model
+                        .clearVersions()
+                        .set(updatedDocument);
+                    _this.render();
+                    dialog.showSuccess('Version succesfully removed');
+                    dialog.enableClosing();
+                })
+                .error(function(){
+                    dialog.showError('Version was not removed');
+                    dialog.enableClosing();
                 })
         },
         

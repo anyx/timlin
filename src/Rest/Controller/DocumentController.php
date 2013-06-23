@@ -25,10 +25,10 @@ class DocumentController extends Controller
     /**
      * @View(SerializerGroups={"Editor"})
      */
-    public function putVersionChangeAction($id, Request $request)
+    public function putVersionsChangeAction($documentId, Request $request)
     {
         /* @var $document \App\Document\AbstractDocument  */
-        $document = $this->getDocument($id);
+        $document = $this->getDocument($documentId);
         $versionId = $request->get('new_current_version');
         
         try {
@@ -49,9 +49,9 @@ class DocumentController extends Controller
     /**
      * @View(SerializerGroups={"Editor"})
      */
-    public function postVersionAction($id, Request $request)
+    public function postVersionsAction($documentId, Request $request)
     {
-        $document = $this->get('dm')->getRepository('App\Document\Article')->findUserDocumentById($this->getUser(), $id);
+        $document = $this->get('dm')->getRepository('App\Document\Article')->findUserDocumentById($this->getUser(), $documentId);
         if (empty($document)) {
             throw $this->createNotFoundException('Document not found');
         }
@@ -75,11 +75,10 @@ class DocumentController extends Controller
      * @View(SerializerGroups={"Editor"})
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
-    public function putVersionAction($id, Request $request)
+    public function putVersionAction($documentId, $versionId, Request $request)
     {
         /* @var $document \App\Document\AbstractDocument  */
-        $document = $this->getDocument($id);
-        $versionId = $request->get('version_id');
+        $document = $this->getDocument($documentId);
 
         try {
             $version = $document->getVersion($versionId);
@@ -103,11 +102,10 @@ class DocumentController extends Controller
     /**
      * @View(SerializerGroups={"Editor"})
      */
-    public function deleteVersionAction($id, Request $request)
+    public function deleteVersionAction($documentId, $versionId, Request $request)
     {
         /* @var $document \App\Document\AbstractDocument  */
-        $document = $this->getDocument($id);
-        $versionId = $request->get('version_id');
+        $document = $this->getDocument($documentId);
 
         try {
             if ($document->removeVersion($versionId)) {
@@ -118,7 +116,7 @@ class DocumentController extends Controller
             throw new HttpException(400, 'Can not remove version');
             
         } catch (\Exception $exception) {
-            throw new HttpException(500, 'Can\'t save version', $exception);
+            throw new HttpException(500, 'Can\'t remove version', $exception);
         }
     }
     
