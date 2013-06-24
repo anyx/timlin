@@ -1,7 +1,7 @@
 define(
     [
         'marionette',
-        'tpl!templates/VersionChooser.phtml',
+        'tpl!templates/VersionChooser.tpl',
         'views/VersionInfo'
     ],
     function(

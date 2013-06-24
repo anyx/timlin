@@ -15,7 +15,7 @@
             },
             //models
             'models/DocumentVersion' : {
-                url: '{{path('rest_document_put_document_version', {'documentId' : ':document', 'versionId' : ':version'})}}'
+                url: '{{path('rest_editor_put_document_version', {'documentId' : ':document', 'versionId' : ':version'})}}'
             },
             'modules/article/Layout' : {
                 'document-panel'            : '.j-document-panel',
@@ -27,14 +27,11 @@
                 previewUrl : '{{url('app_article_preview', {'id' : ':id'})}}'
             },
             'modules/article/models/ArticleCollection' : {
-                url : '{{path('rest_article_get_articles')}}'
-            },
-            'modules/article/Controller' : {
-                previewUrl : '{{url('app_article_preview', {'id' : ':id'})}}'
+                url : '{{path('rest_editor_get_articles')}}'
             },
             //Timeline
             'modules/timeline/models/Timeline' : {
-                url : '{{path('rest_timeline_get_timelines')}}'
+                url : '{{path('rest_editor_get_timelines')}}'
             }
         }
     };

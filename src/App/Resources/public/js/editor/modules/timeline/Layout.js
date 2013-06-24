@@ -6,7 +6,7 @@ define(
         './views/ScaleSlider',
         './views/TopBar',
         './views/WidgetPanel',
-        'tpl!./templates/Layout.phtml'
+        'tpl!./templates/Layout.tpl'
     ],
     function(
         Marionette,

@@ -1,4 +1,4 @@
-define(['marionette', 'module', 'tpl!./../templates/Workspace.phtml'], function(Marionette, module, template) {
+define(['marionette', 'module', 'tpl!./../templates/Workspace.tpl'], function(Marionette, module, template) {
     return Marionette.ItemView.extend({
         
         className: 'b-editor__workspace-content',

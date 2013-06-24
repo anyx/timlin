@@ -14,24 +14,24 @@ abstract class AbstractDocument
 {
     /**
      * @MongoDB\Id
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      */
     protected $id;
 
     /**
      * @MongoDB\String
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      */
     protected $title;
 
     /**
      * @MongoDB\String
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      */
     protected $description = '';
 
     /**
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      * @MongoDB\Date
      */
     protected $createdAt;
@@ -45,6 +45,8 @@ abstract class AbstractDocument
      * @MongoDB\EmbedMany(targetDocument="AbstractDocument")
      * @Serializer\Groups({"Editor"})
      * @Serializer\Type("Array")
+     * 
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $versions = array();
 
@@ -76,6 +78,8 @@ abstract class AbstractDocument
 
         $version = $this->createVersion();
         $this->setCurrentVersionId($version->getId());
+        
+        $this->versions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId()
@@ -140,6 +144,20 @@ abstract class AbstractDocument
     public function setPublished($published)
     {
         $this->published = $published;
+    }
+
+    /**
+     * @Serializer\VirtualProperty
+     * @Serializer\Type("array")
+     * @Serializer\Groups({"Viewer"})
+     * @Serializer\SerializedName("versions")
+     */
+    public function getPublicVersions()
+    {
+        /* @var $version \App\Document\AbstractContent */
+        return array_values($this->versions->filter(function($version) {
+            return $version->isPublished();
+        })->toArray());
     }
 
     /**

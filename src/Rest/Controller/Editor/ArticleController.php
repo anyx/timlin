@@ -1,6 +1,6 @@
 <?php
 
-namespace Rest\Controller;
+namespace Rest\Controller\Editor;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -71,7 +71,7 @@ class ArticleController extends Controller
     public function cputAction(Article $article, Request $request)
     {
         $documentForm = $this->createForm(new DocumentType(), $article);
-        
+
         $documentForm->submit($this->getDocumentData($request));
 
         if ($documentForm->isValid()) {
@@ -81,7 +81,7 @@ class ArticleController extends Controller
             throw new HttpException(400, 'Can\'t save document');
         }
     }
-    
+
     /**
      * @View()
      * 
@@ -93,23 +93,23 @@ class ArticleController extends Controller
     public function putContentAction(Article $article, Request $request)
     {
         $fullContent = $request->get('content');
-        
+
         if (empty($fullContent) || !array_key_exists('j-article-content', $fullContent)) {
             throw new HttpException(400, 'Article content missing');
         }
-        
+
         $content = $fullContent['j-article-content'];
-        
+
         $article->setContent($content);
-        
+
         $dm = $this->get('dm');
         $dm->persist($article);
-        
+
         $dm->flush();
-        
+
         return $article;
     }
-    
+
     /**
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request

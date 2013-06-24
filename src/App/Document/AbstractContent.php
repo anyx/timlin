@@ -12,19 +12,19 @@ abstract class AbstractContent
 {
     /**
      * @MongoDB\Id()
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      */
     protected $id;
 
     /**
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      * @MongoDB\String
      */
     protected $parentId;
 
     /**
      * @MongoDB\String
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      */
     protected $title;
 
@@ -43,7 +43,7 @@ abstract class AbstractContent
 
     /**
      * @MongoDB\Date
-     * @Serializer\Groups({"Editor"})
+     * @Serializer\Groups({"Editor", "Viewer"})
      */
     protected $updatedAt;
 
@@ -100,6 +100,10 @@ abstract class AbstractContent
         $this->title = $title;
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public function isPublished()
     {
         return $this->published;

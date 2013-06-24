@@ -19,7 +19,7 @@ class DocumentRepository extends BaseRepository
      * @param integer $limit
      * @return \Doctrine\ODM\MongoDB\LoggableCursor
      */
-    public function getPopularDocuments($limit = 10)
+    public function findPopularDocuments($limit = 10)
     {
         return $this->findBy(
             array(
@@ -32,11 +32,12 @@ class DocumentRepository extends BaseRepository
         );
     }
     
-    public function getPublicDocument($id)
+    public function findPublicDocument($id)
     {
         return $this->findOneBy(
             array(
-                'id'    => $id
+                'id'        => $id,
+                'published' => true
             )
         );
     }

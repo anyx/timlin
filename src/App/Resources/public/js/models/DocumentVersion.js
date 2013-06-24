@@ -67,6 +67,10 @@ define(['backbone'], function(Backbone) {
                 return false;
             }
             return new moment(this.get('published_at'));
+        },
+        
+        toString: function() {
+            return this.get('title');
         }
     })
 });

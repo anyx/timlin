@@ -1,4 +1,4 @@
-define(['marionette', './widgets/loader', 'tpl!../templates/TopBar.phtml'], function(Marionette, widgets, template) {
+define(['marionette', './widgets/loader', 'tpl!../templates/TopBar.tpl'], function(Marionette, widgets, template) {
     
     return Marionette.ItemView.extend({
         template        : template,

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rest\Controller;
+namespace Rest\Controller\Editor;
 
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;

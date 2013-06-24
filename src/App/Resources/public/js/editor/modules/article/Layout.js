@@ -2,7 +2,7 @@ define(
     [
         'marionette',
         'module',
-        'tpl!./templates/Layout.phtml',
+        'tpl!./templates/Layout.tpl',
         'views/DocumentPanel',
         'views/DocumentPanelSwitcher',
         './views/Workspace'
@@ -62,23 +62,6 @@ define(
             
             this.workspace.show(workspace);
         },
-
-        initDimensions: function() {
-            /* Calc layout width */
-        },
-        
-        setEditorWidth : function () {
-            /*
-            var articleContentElement = $(app.options['article-content']);
-            if (articleContentElement.length == 0) {
-                return;
-            }
-
-            articleContentElement
-                .css('width', articleContentElement.parent().width() - articleContentElement.position().left -1 + 'px');
-            */
-        },
-
 
         getContentFrame : function() {
             return this.$el.find('.j-article-content');

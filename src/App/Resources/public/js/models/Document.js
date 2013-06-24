@@ -1,4 +1,4 @@
-define(['backbone', 'models/DocumentVersion'], function(Backbone, DocumentVersion) {
+define(['backbone'], function(Backbone) {
     return Backbone.Model.extend({
 
         versions : null,
@@ -10,6 +10,10 @@ define(['backbone', 'models/DocumentVersion'], function(Backbone, DocumentVersio
                 }, this);
             }
             return this.versions;
+        },
+
+        createVersion: function() {
+            throw new Error('Method must be override');
         },
 
         getTitle: function() {
@@ -40,7 +44,6 @@ define(['backbone', 'models/DocumentVersion'], function(Backbone, DocumentVersio
         },
         
         isPublished: function() {
-            console.log(this.attributes);
             return this.get('published');
         }
     });

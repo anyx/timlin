@@ -1,0 +1,1 @@
+<iframe class="j-article-content b-editor__content-editor"></iframe>

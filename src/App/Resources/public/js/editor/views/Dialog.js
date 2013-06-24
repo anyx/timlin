@@ -1,4 +1,4 @@
-define(['marionette', 'tpl!templates/Dialog.phtml'], function(Marionette, template) {
+define(['marionette', 'tpl!./../templates/Dialog.tpl'], function(Marionette, template) {
     return Marionette.ItemView.extend({
         
         template: template,

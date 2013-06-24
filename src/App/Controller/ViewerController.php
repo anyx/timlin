@@ -16,7 +16,7 @@ class ViewerController extends Controller
      * 
      * @Route("/")
      */
-    public function indexAction()
+    public function listAction()
     {
         /**
          * @todo Common Repo
@@ -24,7 +24,7 @@ class ViewerController extends Controller
         $documents = $this->get('dm')->getRepository('App\Document\Article')->getPopularDocuments(10);
         
         return $this->render(
-            'App:Viewer:index.html.twig',
+            'App:Viewer:list.html.twig',
             array(
                 'documents' => $documents
             )
@@ -32,23 +32,13 @@ class ViewerController extends Controller
     }
     
     /**
-     * @Route("/view/{id}", name="view_document")
-     * @param string $id
+     * @Route("/view", name="viewer")
      */
-    public function viewAction($id)
+    public function viewerAction()
     {
-        
-        $document = $this->get('dm')->getRepository('App\Document\Article')->getPublicDocument($id);
-        
-        if (empty($document)) {
-            throw $this->createNotFoundException('Document not found');
-        }
-        
         return $this->render(
-            'App:Viewer:view.html.twig',
-            array(
-                'document' => $document
-            )
+            'App:Viewer:viewer.html.twig',
+            array()
         );
     }
 }

@@ -1,0 +1,52 @@
+{% extends 'App::viewer_layout.html.twig' %}
+
+{% block javascripts %}
+    {{parent()}}
+<script type="text/javascript">
+    var require = {
+        config: {
+            app : {
+                'selectors' : {
+                    'container'         : '.j-app-container',
+                }
+            },
+            //models
+            'models/DocumentVersion' : {
+            },
+            'modules/article/Layout' : {
+                'article-content'           : '.j-article-content'
+            },
+            'modules/article/views/Workspace' : {
+            },
+            'modules/article/models/ArticleCollection' : {
+                'url': '{{path('rest_viewer_get_documents')}}'
+            },
+            'modules/article/Controller' : {
+            },
+            //Timeline
+            'modules/timeline/models/Timeline' : {
+            }
+        }
+    };
+    </script>
+    <script data-main="{{asset('/bundles/app/js/viewer/main.js')}}" src="{{asset('/bundles/app/js/vendors/requirejs/require.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/article-viewer.css') }}" />
+
+{% endblock %}
+
+{% block content %}
+    <div class="b-viewer-container j-app-container"></div>
+    <div id="j-loader" class="modal hide fade" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+        <div class="">
+            <i class="icon-spinner icon-spin icon-2x pull-left"></i>
+            <span class="j-text"></span>
+        </div>
+    </div>
+
+    <div id="j-dialog" class="modal hide b-dialog" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    </div>
+{% endblock %}

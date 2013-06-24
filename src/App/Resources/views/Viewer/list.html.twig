@@ -12,7 +12,7 @@
 <div class="container b-list">
     <ul>
     {% for document in documents %}
-        <li><a href="{{path("view_document", {"id" : document.id})}}">{{document.title}}</a></li>
+        <li><a href="{{path("viewer")}}#document/{{document.id}}">{{document.title}}</a></li>
     {% endfor %}
     </ul>
 </div>

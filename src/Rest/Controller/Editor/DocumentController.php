@@ -1,6 +1,6 @@
 <?php
 
-namespace Rest\Controller;
+namespace Rest\Controller\Editor;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,24 +25,23 @@ class DocumentController extends Controller
     /**
      * @View(SerializerGroups={"Editor"})
      */
-    public function putVersionsChangeAction($documentId, Request $request)
+    public function putVersionsChangeAction($documentId, $versionId, Request $request)
     {
         /* @var $document \App\Document\AbstractDocument  */
         $document = $this->getDocument($documentId);
-        $versionId = $request->get('new_current_version');
-        
+ 
         try {
             $version = $document->getVersion($versionId);
 
             $document->setCurrentVersionId($version->getId());
             $this->get('dm')->flush();
-            
+
             return $document;
-            
+
         } catch (\Exception $exception) {
             throw new HttpException(500, 'Can\'t change version', $exception);
         }
-        
+
         return $document;
     }
 

@@ -1,4 +1,4 @@
-define(['marionette', 'tpl!templates/DocumentPanelSwitcher.phtml'], function(Marionette, template) {
+define(['marionette', 'tpl!templates/DocumentPanelSwitcher.tpl'], function(Marionette, template) {
     return Marionette.ItemView.extend({
         template: template,
         

@@ -2,7 +2,7 @@ define(
     [
         'marionette',
         'app',
-        'tpl!templates/DocumentPanel.phtml',
+        'tpl!templates/DocumentPanel.tpl',
         'views/VersionChooser'
     ],
     function(
@@ -18,11 +18,10 @@ define(
 
         events: {
             'click .j-choose-version-button'    : 'onClickChooseVersion',
-            'keyup .j-document-description'     : 'onKeyUpSetDescription',
             'keyup .j-document-title'           : 'onKeyUpSetTitle',
+            'keyup .j-document-description'     : 'onKeyUpSetDescription',
             'click .j-save-document-button'     : 'onClickSaveDocument',
             'click .j-publish-document-button'  : 'onClickChangePubclity'
-            
         },
 
         initialize: function() {
@@ -31,7 +30,6 @@ define(
                 _this.render();
             });
             this.model.on('sync', function() {
-                console.log('s', _this.model.attributes);
                 _this.render();
             });
         },

@@ -1,7 +1,7 @@
 define(
     [
         'marionette',
-        'tpl!./templates/Layout.phtml',
+        'tpl!./templates/Layout.tpl',
         'app'
     ],
     function(

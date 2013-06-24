@@ -5,6 +5,7 @@ require.config({
         'underscore'    : '/bundles/app/js/vendors/underscore/underscore',
         'backbone'      : '/bundles/app/js/vendors/backbone/backbone',
         'bootstrap'     : '/bundles/app/js/vendors/bootstrap/docs/assets/js/bootstrap.min',
+        'marionette'    : '/bundles/app/js/vendors/marionette/lib/backbone.marionette',
         'moment'        : '/bundles/app/js/vendors/moment/min',
         'marion'        : '/bundles/app/js/vendors/marion/build/marion',
         'tpl'           : '/bundles/app/js/vendors/requirejs-tpl/tpl'
