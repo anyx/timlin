@@ -21,7 +21,7 @@ class ViewerController extends Controller
         /**
          * @todo Common Repo
          */
-        $documents = $this->get('dm')->getRepository('App\Document\Article')->getPopularDocuments(10);
+        $documents = $this->get('dm')->getRepository('App\Document\Article')->findPopularDocuments(10);
         
         return $this->render(
             'App:Viewer:list.html.twig',

@@ -80,6 +80,7 @@ abstract class AbstractDocument
         $this->setCurrentVersionId($version->getId());
         
         $this->versions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addVersion($version);
     }
 
     public function getId()

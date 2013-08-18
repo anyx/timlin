@@ -23,11 +23,9 @@ class DocumentRepository extends BaseRepository
     {
         return $this->findBy(
             array(
-                //'published' => true
+                'published' => true
             ), 
-            array(
-                
-            ),
+            array(),
             $limit
         );
     }
